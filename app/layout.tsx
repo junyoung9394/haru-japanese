@@ -10,6 +10,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://japanese.luckygrampus.com"),
   title: "하루일본어 | 히라가나부터 JLPT까지",
   description:
     "히라가나, 가타카나, JLPT 단어와 문법, 일본 문화를 초보자도 쉽게 배울 수 있는 일본어 학습 사이트입니다.",
