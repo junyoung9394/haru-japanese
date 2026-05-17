@@ -1,65 +1,185 @@
-import Image from "next/image";
+import Link from "next/link";
+import AppDownloadCta from "@/components/AppDownloadCta";
+import AdSlot from "@/components/AdSlot";
+import { cultureItems } from "@/data/culture";
+
+const dailyExpressions = [
+  { expression: "おはようございます", romaji: "Ohayou gozaimasu", meaning: "좋은 아침입니다" },
+  { expression: "ありがとうございます", romaji: "Arigatou gozaimasu", meaning: "감사합니다" },
+  { expression: "すみません", romaji: "Sumimasen", meaning: "저기요 / 실례합니다" },
+];
+
+const categories = [
+  {
+    href: "/hiragana",
+    icon: "あ",
+    title: "히라가나",
+    description: "일본어의 첫걸음, 기본 문자 46자를 카드로 익혀보세요.",
+    color: "bg-rose-50 border-rose-200",
+    iconColor: "text-rose-600",
+  },
+  {
+    href: "/katakana",
+    icon: "ア",
+    title: "가타카나",
+    description: "외래어 표기에 쓰이는 가타카나 46자를 배워보세요.",
+    color: "bg-orange-50 border-orange-200",
+    iconColor: "text-orange-600",
+  },
+  {
+    href: "/jlpt",
+    icon: "N5",
+    title: "JLPT N5 기초",
+    description: "JLPT N5 단어와 문법으로 일본어 기초를 다져보세요.",
+    color: "bg-yellow-50 border-yellow-200",
+    iconColor: "text-yellow-700",
+  },
+  {
+    href: "/culture",
+    icon: "🎌",
+    title: "일본 문화",
+    description: "인사, 식당, 편의점, 온천 등 일본 문화를 알아보세요.",
+    color: "bg-green-50 border-green-200",
+    iconColor: "text-green-700",
+  },
+  {
+    href: "/quiz",
+    icon: "🧩",
+    title: "퀴즈",
+    description: "히라가나, 가타카나, JLPT 단어를 퀴즈로 복습해보세요.",
+    color: "bg-blue-50 border-blue-200",
+    iconColor: "text-blue-700",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <div className="max-w-5xl mx-auto px-4 py-10 space-y-14">
+      {/* 히어로 섹션 */}
+      <section className="text-center py-10 space-y-5">
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 leading-tight">
+          🌸 히라가나부터 JLPT까지<br />
+          <span className="text-rose-600">하루 10분 일본어</span>
+        </h1>
+        <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          초보자도 쉽게 배우는 일본어 학습 사이트입니다. 웹에서 개념을 익히고, 앱에서 퀴즈와 반복 학습으로 완성하세요.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <Link
+            href="/hiragana"
+            className="bg-rose-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-rose-700 transition-colors"
+          >
+            히라가나부터 시작하기
+          </Link>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca"
             target="_blank"
             rel="noopener noreferrer"
+            className="border border-rose-600 text-rose-600 px-6 py-3 rounded-full font-semibold hover:bg-rose-50 transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+            앱 다운로드
           </a>
         </div>
-      </main>
+      </section>
+
+      {/* 광고 자리 */}
+      <AdSlot />
+
+      {/* 학습 카테고리 */}
+      <section>
+        <h2 className="text-xl font-bold text-gray-800 mb-5">학습 카테고리</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {categories.map((cat) => (
+            <Link
+              key={cat.href}
+              href={cat.href}
+              className={`border rounded-2xl p-5 hover:shadow-md transition-shadow ${cat.color}`}
+            >
+              <p className={`text-3xl font-bold mb-2 ${cat.iconColor}`}>{cat.icon}</p>
+              <p className="font-semibold text-gray-800 mb-1">{cat.title}</p>
+              <p className="text-sm text-gray-600">{cat.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* 앱 연동 소개 */}
+      <section className="bg-white border border-gray-200 rounded-2xl p-6 sm:p-8">
+        <h2 className="text-xl font-bold text-gray-800 mb-4">웹 + 앱으로 효과적인 일본어 학습</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          <div className="text-center p-4">
+            <p className="text-2xl mb-2">📖</p>
+            <p className="font-semibold text-gray-800 mb-1">웹에서 개념 학습</p>
+            <p className="text-sm text-gray-600">히라가나, 가타카나, JLPT 단어와 문법, 일본 문화를 확인합니다.</p>
+          </div>
+          <div className="text-center p-4">
+            <p className="text-2xl mb-2">→</p>
+            <p className="font-semibold text-gray-800 mb-1">앱에서 반복 학습</p>
+            <p className="text-sm text-gray-600">N5~N1 단어와 문법을 TTS 발음, 퀴즈, 오답노트로 복습합니다.</p>
+          </div>
+          <div className="text-center p-4">
+            <p className="text-2xl mb-2">🏆</p>
+            <p className="font-semibold text-gray-800 mb-1">XP와 스트릭으로 습관화</p>
+            <p className="text-sm text-gray-600">매일 학습 기록을 쌓아 일본어 실력을 꾸준히 늘려갑니다.</p>
+          </div>
+        </div>
+        <div className="text-center">
+          <a
+            href="https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-rose-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-rose-700 transition-colors"
+          >
+            Google Play에서 앱 설치하기
+          </a>
+        </div>
+      </section>
+
+      {/* 오늘의 일본어 표현 */}
+      <section>
+        <h2 className="text-xl font-bold text-gray-800 mb-5">오늘의 일본어 표현</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {dailyExpressions.map((item) => (
+            <div key={item.expression} className="bg-white border border-gray-200 rounded-2xl p-5 text-center">
+              <p className="text-2xl font-bold text-rose-600 mb-1">{item.expression}</p>
+              <p className="text-sm text-gray-500 mb-2">{item.romaji}</p>
+              <p className="text-gray-700 font-medium">{item.meaning}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 일본 문화 추천 글 */}
+      <section>
+        <h2 className="text-xl font-bold text-gray-800 mb-5">일본 문화 살펴보기</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {cultureItems.slice(0, 3).map((item) => (
+            <div key={item.slug} className="bg-white border border-gray-200 rounded-2xl p-5">
+              <span className="text-xs bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full font-medium">
+                {item.category}
+              </span>
+              <p className="font-semibold text-gray-800 mt-3 mb-2">{item.title}</p>
+              <p className="text-sm text-gray-600 leading-relaxed">{item.description}</p>
+              {item.expression && (
+                <p className="mt-3 text-rose-600 font-bold text-sm">
+                  {item.expression} — {item.expressionMeaning}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className="text-center mt-5">
+          <Link href="/culture" className="text-rose-600 font-medium hover:underline text-sm">
+            문화 콘텐츠 더 보기 →
+          </Link>
+        </div>
+      </section>
+
+      {/* 앱 다운로드 CTA */}
+      <AppDownloadCta />
+
+      {/* 광고 자리 */}
+      <AdSlot />
     </div>
   );
 }
