@@ -16,7 +16,13 @@ export default function Footer() {
             <ul className="flex flex-col gap-2 text-sm text-gray-600">
               <li><Link href="/hiragana" className="hover:text-rose-600 transition-colors">히라가나</Link></li>
               <li><Link href="/katakana" className="hover:text-rose-600 transition-colors">가타카나</Link></li>
-              <li><Link href="/jlpt" className="hover:text-rose-600 transition-colors">JLPT N5 기초</Link></li>
+              <li><Link href="/vocabulary" className="hover:text-rose-600 transition-colors">기초 단어</Link></li>
+              <li><Link href="/kanji" className="hover:text-rose-600 transition-colors">기초 한자</Link></li>
+              <li><Link href="/jlpt" className="hover:text-rose-600 transition-colors">JLPT 시험</Link></li>
+              <li><Link href="/jpt" className="hover:text-rose-600 transition-colors">JPT 시험</Link></li>
+              <li><Link href="/travel" className="hover:text-rose-600 transition-colors">여행 일본어</Link></li>
+              <li><Link href="/basic" className="hover:text-rose-600 transition-colors">기본 소통 일본어</Link></li>
+              <li><Link href="/business" className="hover:text-rose-600 transition-colors">비즈니스 일본어</Link></li>
               <li><Link href="/culture" className="hover:text-rose-600 transition-colors">일본 문화</Link></li>
               <li><Link href="/quiz" className="hover:text-rose-600 transition-colors">퀴즈</Link></li>
             </ul>
