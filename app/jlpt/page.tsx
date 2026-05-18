@@ -47,7 +47,7 @@ export default function JlptPage() {
 
       {/* N5 단어 */}
       <section>
-        <h2 className="text-lg font-bold text-gray-800 mb-4">JLPT N5 단어 샘플</h2>
+        <h2 className="text-lg font-bold text-gray-800 mb-4">JLPT N5 단어</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
           {n5Words.map((word) => (
             <div key={word.word} className="bg-white border border-gray-200 rounded-xl p-4 text-center">
@@ -61,7 +61,7 @@ export default function JlptPage() {
 
       {/* N5 문법 */}
       <section>
-        <h2 className="text-lg font-bold text-gray-800 mb-4">JLPT N5 문법 샘플</h2>
+        <h2 className="text-lg font-bold text-gray-800 mb-4">JLPT N5 문법</h2>
         <div className="space-y-3">
           {n5Grammar.map((item) => (
             <div key={item.pattern} className="bg-white border border-gray-200 rounded-xl p-5">

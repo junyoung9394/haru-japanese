@@ -99,6 +99,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className={`${geistSans.variable} h-full`}>
       <head>
+        <meta name="naver-site-verification" content="9062e0dad4a36e831754c21ede1ce2fb6489748c" />
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8518556382646891"
