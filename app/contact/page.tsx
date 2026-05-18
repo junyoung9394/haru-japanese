@@ -5,8 +5,7 @@ export const metadata: Metadata = {
   description: "하루일본어 사이트와 앱 관련 문의 안내 페이지입니다.",
 };
 
-// 이 이메일 주소를 실제 이메일로 교체하세요
-const CONTACT_EMAIL = "example@example.com";
+const CONTACT_EMAIL = "junyoung9394@gmail.com";
 
 export default function ContactPage() {
   return (
