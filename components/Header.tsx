@@ -3,18 +3,75 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const navLinks = [
+type NavItem =
+  | { href: string; label: string; subtitle?: string; dropdown?: never }
+  | { href?: never; label: string; subtitle?: never; dropdown: { href: string; label: string; subtitle: string }[] };
+
+const navItems: NavItem[] = [
   { href: "/", label: "홈" },
-  { href: "/hiragana", label: "히라가나" },
-  { href: "/katakana", label: "가타카나" },
-  { href: "/jlpt", label: "JLPT" },
-  { href: "/travel", label: "여행 일본어" },
-  { href: "/culture", label: "일본 문화" },
+  { href: "/hiragana", label: "히라가나", subtitle: "ひらがな" },
+  { href: "/katakana", label: "가타카나", subtitle: "カタカナ" },
+  {
+    label: "시험",
+    dropdown: [
+      { href: "/jlpt", label: "JLPT 시험", subtitle: "日本語能力試験" },
+      { href: "/jpt", label: "JPT 시험", subtitle: "日本語能力試験(JPT)" },
+    ],
+  },
+  {
+    label: "학습",
+    dropdown: [
+      { href: "/travel", label: "여행 일본어", subtitle: "旅行の日本語" },
+      { href: "/basic", label: "기본 소통 일본어", subtitle: "基本の日本語" },
+      { href: "/vocabulary", label: "기초 단어", subtitle: "基礎単語" },
+      { href: "/kanji", label: "기초 한자", subtitle: "基礎漢字" },
+      { href: "/business", label: "비즈니스 일본어", subtitle: "ビジネス日本語" },
+    ],
+  },
+  { href: "/culture", label: "일본 문화", subtitle: "日本文化" },
   { href: "/quiz", label: "퀴즈" },
 ];
 
+function DropdownMenu({ item, onClose }: { item: Extract<NavItem, { dropdown: unknown[] }>; onClose?: () => void }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <button
+        className="flex items-center gap-1 hover:text-rose-600 transition-colors py-1"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+      >
+        {item.label}
+        <svg className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {open && (
+        <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-lg py-1 min-w-[180px] z-50">
+          {item.dropdown.map((sub) => (
+            <Link
+              key={sub.href}
+              href={sub.href}
+              onClick={() => { setOpen(false); onClose?.(); }}
+              className="flex flex-col px-4 py-2.5 hover:bg-rose-50 hover:text-rose-600 transition-colors"
+            >
+              <span className="text-sm font-medium">{sub.label}</span>
+              <span className="text-xs text-gray-400 mt-0.5">{sub.subtitle}</span>
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState<string | null>(null);
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -24,12 +81,23 @@ export default function Header() {
         </Link>
 
         {/* 데스크탑 메뉴 */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700">
-          {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-rose-600 transition-colors">
-              {link.label}
-            </Link>
-          ))}
+        <nav className="hidden md:flex items-center gap-5 text-sm font-medium text-gray-700">
+          {navItems.map((item) =>
+            item.dropdown ? (
+              <DropdownMenu key={item.label} item={item} />
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex flex-col items-center hover:text-rose-600 transition-colors"
+              >
+                <span>{item.label}</span>
+                {item.subtitle && (
+                  <span className="text-[10px] text-gray-400 font-normal leading-tight">{item.subtitle}</span>
+                )}
+              </Link>
+            )
+          )}
           <Link
             href="/app-download"
             className="bg-rose-600 text-white px-4 py-2 rounded-full hover:bg-rose-700 transition-colors"
@@ -53,20 +121,50 @@ export default function Header() {
       {/* 모바일 메뉴 */}
       {menuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 px-4 pb-4">
-          <nav className="flex flex-col gap-3 pt-3 text-sm font-medium text-gray-700">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="hover:text-rose-600 transition-colors py-1"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <nav className="flex flex-col gap-1 pt-3 text-sm font-medium text-gray-700">
+            {navItems.map((item) =>
+              item.dropdown ? (
+                <div key={item.label}>
+                  <button
+                    className="w-full flex items-center justify-between py-2 hover:text-rose-600 transition-colors"
+                    onClick={() => setMobileOpen(mobileOpen === item.label ? null : item.label)}
+                  >
+                    <span>{item.label}</span>
+                    <svg className={`w-3 h-3 transition-transform ${mobileOpen === item.label ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {mobileOpen === item.label && (
+                    <div className="pl-3 flex flex-col gap-1 pb-1">
+                      {item.dropdown.map((sub) => (
+                        <Link
+                          key={sub.href}
+                          href={sub.href}
+                          onClick={() => { setMenuOpen(false); setMobileOpen(null); }}
+                          className="flex items-center justify-between py-1.5 text-gray-600 hover:text-rose-600 transition-colors"
+                        >
+                          <span>{sub.label}</span>
+                          <span className="text-xs text-gray-400">{sub.subtitle}</span>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="flex items-center justify-between py-2 hover:text-rose-600 transition-colors"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <span>{item.label}</span>
+                  {item.subtitle && <span className="text-xs text-gray-400">{item.subtitle}</span>}
+                </Link>
+              )
+            )}
             <Link
               href="/app-download"
-              className="bg-rose-600 text-white px-4 py-2 rounded-full text-center hover:bg-rose-700 transition-colors"
+              className="mt-2 bg-rose-600 text-white px-4 py-2 rounded-full text-center hover:bg-rose-700 transition-colors"
               onClick={() => setMenuOpen(false)}
             >
               앱 다운로드
