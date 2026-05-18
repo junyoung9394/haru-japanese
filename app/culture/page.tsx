@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import AppDownloadCta from "@/components/AppDownloadCta";
-import AdSlot from "@/components/AdSlot";
+import AdBanner from "@/components/AdBanner";
+import { AD_SLOTS } from "@/lib/adSlots";
 import { cultureItems } from "@/data/culture";
 
 export const metadata: Metadata = {
@@ -21,8 +22,6 @@ export default function CulturePage() {
           언어와 문화는 함께 배울 때 더 잘 이해됩니다. 일본 여행, 생활, 비즈니스에서 알아두면 유용한 일본 문화와 그 상황에서 쓰이는 일본어 표현을 함께 소개합니다.
         </p>
       </section>
-
-      <AdSlot />
 
       <section>
         <h2 className="text-lg font-bold text-gray-800 mb-5">일본 문화 콘텐츠</h2>
@@ -52,6 +51,8 @@ export default function CulturePage() {
         </div>
       </section>
 
+      <AdBanner slotId={AD_SLOTS.content_mid} variant="banner" />
+
       <section className="bg-white border border-gray-200 rounded-2xl p-6">
         <h2 className="text-lg font-bold text-gray-800 mb-3">일본어와 문화를 함께 배우는 이유</h2>
         <p className="text-gray-600 text-sm leading-relaxed">
@@ -62,7 +63,7 @@ export default function CulturePage() {
 
       <AppDownloadCta />
 
-      <AdSlot />
+      <AdBanner slotId={AD_SLOTS.content_bottom} variant="banner" />
     </div>
   );
 }

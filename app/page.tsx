@@ -1,6 +1,8 @@
 import Link from "next/link";
 import AppDownloadCta from "@/components/AppDownloadCta";
 import AdSlot from "@/components/AdSlot";
+import AdBanner from "@/components/AdBanner";
+import { AD_SLOTS } from "@/lib/adSlots";
 import { cultureItems } from "@/data/culture";
 import { hiragana } from "@/data/kana";
 import { n5Words, n5Grammar } from "@/data/jlpt";
@@ -91,6 +93,8 @@ export default function Home() {
         </div>
       </section>
 
+      <AdBanner slotId={AD_SLOTS.content_mid} variant="banner" />
+
       {/* 학습 카테고리 */}
       <section>
         <h2 className="text-xl font-bold text-gray-800 mb-5">학습 카테고리</h2>
@@ -136,6 +140,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      <AdBanner slotId={AD_SLOTS.content_bottom} variant="banner" />
 
       {/* N5 단어 미리보기 */}
       <section>
