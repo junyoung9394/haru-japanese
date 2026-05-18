@@ -32,6 +32,9 @@ const categoryColor: Record<string, string> = {
   여행: "bg-teal-100 text-teal-700",
   축제: "bg-rose-100 text-rose-700",
   전통: "bg-yellow-100 text-yellow-700",
+  학교: "bg-indigo-100 text-indigo-700",
+  지역: "bg-cyan-100 text-cyan-700",
+  관광: "bg-emerald-100 text-emerald-700",
 };
 
 export default async function CultureDetailPage({ params }: Props) {
