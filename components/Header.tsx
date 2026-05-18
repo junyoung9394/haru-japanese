@@ -8,6 +8,7 @@ const navLinks = [
   { href: "/hiragana", label: "히라가나" },
   { href: "/katakana", label: "가타카나" },
   { href: "/jlpt", label: "JLPT" },
+  { href: "/travel", label: "여행 일본어" },
   { href: "/culture", label: "일본 문화" },
   { href: "/quiz", label: "퀴즈" },
 ];
