@@ -1,8 +1,16 @@
 import { MetadataRoute } from "next";
+import { cultureItems } from "@/data/culture";
 
 const BASE_URL = "https://japanese.luckygrampus.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const culturePages = cultureItems.map((item) => ({
+    url: `${BASE_URL}/culture/${item.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   return [
     {
       url: BASE_URL,
@@ -46,5 +54,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.6,
     },
+    ...culturePages,
   ];
 }
