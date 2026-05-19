@@ -8,7 +8,7 @@ import { n1Words, n1Grammar } from "@/data/jlpt";
 export const metadata: Metadata = {
   title: "JLPT N1 단어·문법 | 하루일본어",
   description:
-    "JLPT N1 필수 단어 20개와 핵심 문법 8가지를 학습하세요. 고급 일본어 어휘와 문법을 정리했습니다.",
+    "JLPT N1 필수 단어 50개와 핵심 문법 20가지를 학습하세요. 고급 일본어 어휘와 문법을 카테고리별로 정리했습니다.",
 };
 
 export default function JlptN1Page() {
@@ -47,36 +47,39 @@ export default function JlptN1Page() {
             <h2 className="text-lg font-bold text-gray-800 mb-4">
               N1 핵심 단어 <span className="text-sm font-normal text-gray-500">({n1Words.length}개)</span>
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-              {n1Words.slice(0, 10).map((word) => (
-                <div key={word.word} className="bg-white border border-gray-200 rounded-xl p-4 text-center hover:border-blue-300 transition-colors">
-                  <p className="text-xl font-bold text-gray-800 mb-1">{word.word}</p>
-                  <p className="text-sm text-blue-600 mb-1">{word.reading}</p>
-                  <p className="text-sm text-gray-600">{word.meaning}</p>
-                </div>
-              ))}
-            </div>
 
-            <AdBanner slotId={AD_SLOTS.home_top} variant="banner" className="my-4" />
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-              {n1Words.slice(10).map((word) => (
-                <div key={word.word} className="bg-white border border-gray-200 rounded-xl p-4 text-center hover:border-blue-300 transition-colors">
-                  <p className="text-xl font-bold text-gray-800 mb-1">{word.word}</p>
-                  <p className="text-sm text-blue-600 mb-1">{word.reading}</p>
-                  <p className="text-sm text-gray-600">{word.meaning}</p>
+            {Object.entries(
+              n1Words.reduce((acc, word) => {
+                const cat = word.category ?? "기타";
+                if (!acc[cat]) acc[cat] = [];
+                acc[cat].push(word);
+                return acc;
+              }, {} as Record<string, typeof n1Words>)
+            ).map(([category, words]) => (
+              <div key={category}>
+                <h3 className="text-sm font-bold text-blue-700 mb-2 mt-4">{category}</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                  {words.map(word => (
+                    <div key={word.word} className="bg-white border border-gray-200 rounded-xl p-4 text-center hover:border-blue-300 transition-colors">
+                      <p className="text-xl font-bold text-gray-800 mb-1">{word.word}</p>
+                      <p className="text-sm text-blue-600 mb-1">{word.reading}</p>
+                      <p className="text-sm text-gray-600">{word.meaning}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </section>
+
+          <AdBanner slotId={AD_SLOTS.home_top} variant="banner" />
 
           <section>
             <h2 className="text-lg font-bold text-gray-800 mb-4">
               N1 핵심 문법 <span className="text-sm font-normal text-gray-500">({n1Grammar.length}개)</span>
             </h2>
             <div className="space-y-3">
-              {n1Grammar.map((item) => (
-                <div key={item.pattern} className="bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-200 transition-colors">
+              {n1Grammar.map((item, idx) => (
+                <div key={`${item.pattern}-${idx}`} className="bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-200 transition-colors">
                   <div className="flex flex-wrap items-center gap-3 mb-2">
                     <span className="text-lg font-bold text-blue-600">{item.pattern}</span>
                     <span className="text-sm text-gray-600 font-medium">{item.meaning}</span>
