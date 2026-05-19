@@ -8,10 +8,20 @@ import { n3Words, n3Grammar } from "@/data/jlpt";
 export const metadata: Metadata = {
   title: "JLPT N3 단어·문법 | 하루일본어",
   description:
-    "JLPT N3 필수 단어 20개와 핵심 문법 8가지를 학습하세요. 중급 일본어 어휘와 문법을 정리했습니다.",
+    "JLPT N3 필수 단어 50개와 핵심 문법 20가지를 학습하세요. 중급 일본어 어휘와 문법을 카테고리별로 정리했습니다.",
 };
 
 export default function JlptN3Page() {
+  const groupedWords = n3Words.reduce<Record<string, typeof n3Words>>(
+    (acc, word) => {
+      const cat = word.category ?? "기타";
+      if (!acc[cat]) acc[cat] = [];
+      acc[cat].push(word);
+      return acc;
+    },
+    {}
+  );
+
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
       <div className="flex gap-8 items-start">
@@ -24,7 +34,7 @@ export default function JlptN3Page() {
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3">JLPT N3 단어·문법</h1>
             <p className="text-gray-600 leading-relaxed max-w-2xl">
               중급 일본어로 일상적인 내용을 어느 정도 이해할 수 있는 수준입니다.
-              회의, 설명, 경험 등 사회생활에 필요한 어휘와 문법을 학습하세요.
+              사회생활, 감정, 동사 등 다양한 카테고리의 어휘와 핵심 문법을 학습하세요.
             </p>
           </section>
 
@@ -47,27 +57,27 @@ export default function JlptN3Page() {
             <h2 className="text-lg font-bold text-gray-800 mb-4">
               N3 핵심 단어 <span className="text-sm font-normal text-gray-500">({n3Words.length}개)</span>
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-              {n3Words.slice(0, 10).map((word) => (
-                <div key={word.word} className="bg-white border border-gray-200 rounded-xl p-4 text-center hover:border-yellow-300 transition-colors">
-                  <p className="text-xl font-bold text-gray-800 mb-1">{word.word}</p>
-                  <p className="text-sm text-yellow-600 mb-1">{word.reading}</p>
-                  <p className="text-sm text-gray-600">{word.meaning}</p>
-                </div>
-              ))}
-            </div>
 
-            <AdBanner slotId={AD_SLOTS.home_top} variant="banner" className="my-4" />
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-              {n3Words.slice(10).map((word) => (
-                <div key={word.word} className="bg-white border border-gray-200 rounded-xl p-4 text-center hover:border-yellow-300 transition-colors">
-                  <p className="text-xl font-bold text-gray-800 mb-1">{word.word}</p>
-                  <p className="text-sm text-yellow-600 mb-1">{word.reading}</p>
-                  <p className="text-sm text-gray-600">{word.meaning}</p>
+            {Object.entries(groupedWords).map(([category, words], index) => (
+              <div key={category}>
+                <h3 className="text-sm font-bold text-yellow-700 mb-2 mt-4">{category}</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                  {words.map((word) => (
+                    <div
+                      key={word.word}
+                      className="bg-white border border-gray-200 rounded-xl p-4 text-center hover:border-yellow-300 transition-colors"
+                    >
+                      <p className="text-xl font-bold text-gray-800 mb-1">{word.word}</p>
+                      <p className="text-sm text-yellow-600 mb-1">{word.reading}</p>
+                      <p className="text-sm text-gray-600">{word.meaning}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+                {index === 0 && (
+                  <AdBanner slotId={AD_SLOTS.home_top} variant="banner" className="my-4" />
+                )}
+              </div>
+            ))}
           </section>
 
           <section>

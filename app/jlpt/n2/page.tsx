@@ -8,7 +8,7 @@ import { n2Words, n2Grammar } from "@/data/jlpt";
 export const metadata: Metadata = {
   title: "JLPT N2 단어·문법 | 하루일본어",
   description:
-    "JLPT N2 필수 단어 20개와 핵심 문법 8가지를 학습하세요. 준고급 일본어 어휘와 문법을 정리했습니다.",
+    "JLPT N2 필수 단어 50개와 핵심 문법 20가지를 학습하세요. 준고급 일본어 어휘와 문법을 정리했습니다.",
 };
 
 export default function JlptN2Page() {
@@ -47,27 +47,30 @@ export default function JlptN2Page() {
             <h2 className="text-lg font-bold text-gray-800 mb-4">
               N2 핵심 단어 <span className="text-sm font-normal text-gray-500">({n2Words.length}개)</span>
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-              {n2Words.slice(0, 10).map((word) => (
-                <div key={word.word} className="bg-white border border-gray-200 rounded-xl p-4 text-center hover:border-green-300 transition-colors">
-                  <p className="text-xl font-bold text-gray-800 mb-1">{word.word}</p>
-                  <p className="text-sm text-green-600 mb-1">{word.reading}</p>
-                  <p className="text-sm text-gray-600">{word.meaning}</p>
+            {Object.entries(
+              n2Words.reduce((acc, word) => {
+                const cat = word.category ?? "기타";
+                if (!acc[cat]) acc[cat] = [];
+                acc[cat].push(word);
+                return acc;
+              }, {} as Record<string, typeof n2Words>)
+            ).map(([category, words], index) => (
+              <div key={category}>
+                {index === 1 && (
+                  <AdBanner slotId={AD_SLOTS.home_top} variant="banner" className="my-4" />
+                )}
+                <h3 className="text-sm font-bold text-green-700 mb-2 mt-4">{category}</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                  {words.map((word) => (
+                    <div key={word.word} className="bg-white border border-gray-200 rounded-xl p-4 text-center hover:border-green-300 transition-colors">
+                      <p className="text-xl font-bold text-gray-800 mb-1">{word.word}</p>
+                      <p className="text-sm text-green-600 mb-1">{word.reading}</p>
+                      <p className="text-sm text-gray-600">{word.meaning}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-
-            <AdBanner slotId={AD_SLOTS.home_top} variant="banner" className="my-4" />
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-              {n2Words.slice(10).map((word) => (
-                <div key={word.word} className="bg-white border border-gray-200 rounded-xl p-4 text-center hover:border-green-300 transition-colors">
-                  <p className="text-xl font-bold text-gray-800 mb-1">{word.word}</p>
-                  <p className="text-sm text-green-600 mb-1">{word.reading}</p>
-                  <p className="text-sm text-gray-600">{word.meaning}</p>
-                </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </section>
 
           <section>
