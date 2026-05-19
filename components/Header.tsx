@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 type NavItem =
   | { href: string; label: string; subtitle?: string; dropdown?: never }
@@ -16,6 +16,9 @@ const navItems: NavItem[] = [
     dropdown: [
       { href: "/jlpt", label: "JLPT 시험", subtitle: "日本語能力試験" },
       { href: "/jpt", label: "JPT 시험", subtitle: "日本語能力試験(JPT)" },
+      { href: "/jlpt/n3", label: "JLPT N3 학습", subtitle: "中級 N3" },
+      { href: "/jlpt/n2", label: "JLPT N2 학습", subtitle: "準上級 N2" },
+      { href: "/jlpt/n1", label: "JLPT N1 학습", subtitle: "上級 N1" },
     ],
   },
   {
@@ -34,11 +37,22 @@ const navItems: NavItem[] = [
 
 function DropdownMenu({ item, onClose }: { item: Extract<NavItem, { dropdown: unknown[] }>; onClose?: () => void }) {
   const [open, setOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleMouseEnter = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimer.current = setTimeout(() => setOpen(false), 150);
+  };
+
   return (
     <div
       className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <button
         className="flex items-center gap-1 hover:text-rose-600 transition-colors py-1"
