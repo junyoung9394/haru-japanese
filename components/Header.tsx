@@ -16,6 +16,9 @@ const navItems: NavItem[] = [
     dropdown: [
       { href: "/jlpt", label: "JLPT 시험", subtitle: "日本語能力試験" },
       { href: "/jpt", label: "JPT 시험", subtitle: "日本語能力試験(JPT)" },
+      { href: "/jlpt/n3", label: "JLPT N3 학습", subtitle: "中級 N3" },
+      { href: "/jlpt/n2", label: "JLPT N2 학습", subtitle: "準上級 N2" },
+      { href: "/jlpt/n1", label: "JLPT N1 학습", subtitle: "上級 N1" },
     ],
   },
   {
