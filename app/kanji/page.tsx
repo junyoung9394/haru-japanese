@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import AppDownloadCta from "@/components/AppDownloadCta";
 import AdSlot from "@/components/AdSlot";
 import KanjiTabs from "@/components/KanjiTabs";
+import KanjiBanner from "@/components/KanjiBanner";
+import AppInfoSection from "@/components/AppInfoSection";
 import { kanjiByGrade } from "@/data/kanji";
 
 export const metadata: Metadata = {
   title: "일본어 기초 한자 | 하루일본어",
   description:
-    "일본 초등학교 교육한자(教育漢字) 1~6학년 약 980자를 학년별로 학습하세요. 각 한자의 음독·훈독과 한국어 뜻을 한눈에 확인할 수 있습니다.",
+    "일본 초등학교 교육한자(教育漢字) 1~6학년 1024자를 학년별로 학습하세요. 각 한자의 음독·훈독과 한국어 뜻을 한눈에 확인할 수 있습니다.",
 };
 
 const totalCount = kanjiByGrade.reduce((sum, g) => sum + g.list.length, 0);
@@ -15,6 +16,9 @@ const totalCount = kanjiByGrade.reduce((sum, g) => sum + g.list.length, 0);
 export default function KanjiPage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-10 space-y-10">
+      {/* 앱 다운로드 배너 */}
+      <KanjiBanner />
+
       {/* 헤더 */}
       <section>
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3">
@@ -62,7 +66,7 @@ export default function KanjiPage() {
         <KanjiTabs grades={kanjiByGrade} />
       </section>
 
-      <AdSlot />
+      <AdSlot type="inArticle" />
 
       {/* 학습 팁 */}
       <section className="bg-yellow-50 border border-yellow-200 rounded-2xl p-6">
@@ -76,7 +80,10 @@ export default function KanjiPage() {
         </ul>
       </section>
 
-      <AppDownloadCta />
+      <AdSlot />
+
+      {/* 앱 소개 섹션 */}
+      <AppInfoSection />
     </div>
   );
 }
