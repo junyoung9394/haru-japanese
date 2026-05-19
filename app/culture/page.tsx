@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import AppDownloadCta from "@/components/AppDownloadCta";
 import AdBanner from "@/components/AdBanner";
 import { AD_SLOTS } from "@/lib/adSlots";
 import { cultureItems } from "@/data/culture";
+import CultureGrid from "@/components/CultureGrid";
 
 export const metadata: Metadata = {
   title: "일본 문화 배우기 | 하루일본어",
@@ -23,33 +23,7 @@ export default function CulturePage() {
         </p>
       </section>
 
-      <section>
-        <h2 className="text-lg font-bold text-gray-800 mb-5">일본 문화 콘텐츠</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {cultureItems.map((item) => (
-            <Link
-              key={item.slug}
-              href={`/culture/${item.slug}`}
-              className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-md hover:border-rose-200 transition-all block"
-            >
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-xs bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full font-medium">
-                  {item.category}
-                </span>
-              </div>
-              <h3 className="font-bold text-gray-800 text-lg mb-2">{item.title}</h3>
-              <p className="text-sm text-gray-600 leading-relaxed mb-4">{item.description}</p>
-              {item.expression && (
-                <div className="bg-rose-50 rounded-xl p-3 border border-rose-100">
-                  <p className="text-rose-600 font-bold text-base">{item.expression}</p>
-                  <p className="text-gray-600 text-sm">{item.expressionMeaning}</p>
-                </div>
-              )}
-              <p className="text-xs text-rose-500 mt-3 font-medium">자세히 보기 →</p>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <CultureGrid items={cultureItems} />
 
       <AdBanner slotId={AD_SLOTS.content_mid} variant="banner" />
 
