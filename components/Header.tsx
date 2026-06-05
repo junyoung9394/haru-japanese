@@ -38,6 +38,7 @@ const navItems: NavItem[] = [
 function DropdownMenu({ item, onClose }: { item: Extract<NavItem, { dropdown: unknown[] }>; onClose?: () => void }) {
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const menuId = `dropdown-${item.label}`;
 
   const handleMouseEnter = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -46,6 +47,15 @@ function DropdownMenu({ item, onClose }: { item: Extract<NavItem, { dropdown: un
 
   const handleMouseLeave = () => {
     closeTimer.current = setTimeout(() => setOpen(false), 150);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      setOpen((v) => !v);
+    } else if (e.key === "Escape") {
+      setOpen(false);
+    }
   };
 
   return (
@@ -57,21 +67,26 @@ function DropdownMenu({ item, onClose }: { item: Extract<NavItem, { dropdown: un
       <button
         className="flex items-center gap-1 hover:text-rose-600 transition-colors py-1"
         onClick={() => setOpen((v) => !v)}
+        onKeyDown={handleKeyDown}
         aria-expanded={open}
+        aria-haspopup="true"
+        aria-controls={menuId}
       >
         {item.label}
-        <svg className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+        <svg aria-hidden="true" className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
       {open && (
-        <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-lg py-1 min-w-[180px] z-50">
+        <div id={menuId} role="menu" className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-lg py-1 min-w-[180px] z-50">
           {item.dropdown.map((sub) => (
             <Link
               key={sub.href}
               href={sub.href}
+              role="menuitem"
               onClick={() => { setOpen(false); onClose?.(); }}
-              className="flex flex-col px-4 py-2.5 hover:bg-rose-50 hover:text-rose-600 transition-colors"
+              onKeyDown={(e) => { if (e.key === "Escape") setOpen(false); }}
+              className="flex flex-col px-4 py-2.5 hover:bg-rose-50 hover:text-rose-600 transition-colors focus:outline-none focus:bg-rose-50 focus:text-rose-600"
             >
               <span className="text-sm font-medium">{sub.label}</span>
               <span className="text-xs text-gray-400 mt-0.5">{sub.subtitle}</span>
@@ -91,7 +106,7 @@ export default function Header() {
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/" className="text-xl font-bold text-rose-600 tracking-tight">
-          🌸 하루일본어
+          <span aria-hidden="true">🌸</span> 하루일본어
         </Link>
 
         {/* 데스크탑 메뉴 */}
@@ -124,17 +139,19 @@ export default function Header() {
         <button
           className="md:hidden p-2 text-gray-700"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="메뉴 열기"
+          aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
         >
-          <span className="block w-5 h-0.5 bg-gray-700 mb-1"></span>
-          <span className="block w-5 h-0.5 bg-gray-700 mb-1"></span>
-          <span className="block w-5 h-0.5 bg-gray-700"></span>
+          <span className={`block w-5 h-0.5 bg-gray-700 transition-transform duration-200 ${menuOpen ? "rotate-45 translate-y-1.5" : "mb-1"}`}></span>
+          <span className={`block w-5 h-0.5 bg-gray-700 transition-opacity duration-200 mb-1 ${menuOpen ? "opacity-0" : ""}`}></span>
+          <span className={`block w-5 h-0.5 bg-gray-700 transition-transform duration-200 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}></span>
         </button>
       </div>
 
       {/* 모바일 메뉴 */}
       {menuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-4 pb-4">
+        <div id="mobile-menu" className="md:hidden bg-white border-t border-gray-100 px-4 pb-4 animate-in slide-in-from-top-2 duration-200">
           <nav className="flex flex-col gap-1 pt-3 text-sm font-medium text-gray-700">
             {navItems.map((item) =>
               item.dropdown ? (

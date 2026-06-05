@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca&utm_source=kanji_web&utm_medium=quiz_cta";
 
@@ -31,11 +33,12 @@ export default function AppInfoSection() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="https://play.google.com/intl/ko/badges/images/generic/ko_badge_web_generic.png"
             alt="Google Play에서 다운로드"
-            className="h-14 mx-auto hover:opacity-90 transition-opacity"
+            width={200}
+            height={56}
+            className="mx-auto hover:opacity-90 transition-opacity"
           />
         </a>
       </div>
