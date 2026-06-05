@@ -3,6 +3,21 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --surface: #f9fafb;
+  --surface-alt: #ffffff;
+  --border: #e5e7eb;
+  --muted: #6b7280;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f0f0f;
+    --foreground: #f0f0f0;
+    --surface: #1a1a1a;
+    --surface-alt: #242424;
+    --border: #2e2e2e;
+    --muted: #9ca3af;
+  }
 }
 
 @theme inline {
@@ -12,11 +27,27 @@
   --font-mono: var(--font-geist-mono);
 }
 
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 다크모드 주요 구조 요소 */
+@media (prefers-color-scheme: dark) {
+  .bg-white { background-color: var(--surface-alt) !important; }
+  .bg-gray-50 { background-color: var(--surface) !important; }
+  .bg-gray-100 { background-color: #2a2a2a !important; }
+  .border-gray-200 { border-color: var(--border) !important; }
+  .border-gray-100 { border-color: #252525 !important; }
+  .text-gray-800 { color: #f0f0f0 !important; }
+  .text-gray-700 { color: #d1d5db !important; }
+  .text-gray-600 { color: #9ca3af !important; }
+  .text-gray-500 { color: #6b7280 !important; }
+  .text-gray-400 { color: #4b5563 !important; }
+  .bg-rose-50 { background-color: #2d1515 !important; }
+  .hover\:bg-rose-50:hover { background-color: #2d1515 !important; }
+  .shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4) !important; }
 }
 
 @keyframes quiz-fade-in {

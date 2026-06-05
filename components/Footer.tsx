@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="max-w-5xl mx-auto px-4 py-10">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
           <div>
-            <p className="text-lg font-bold text-rose-600 mb-2">🌸 하루일본어</p>
+            <p className="text-lg font-bold text-rose-600 mb-2"><span aria-hidden="true">🌸</span> 하루일본어</p>
             <p className="text-sm text-gray-600 leading-relaxed">
               히라가나부터 JLPT, 일본 문화까지 초보자도 쉽게 배우는 일본어 학습 사이트입니다.
             </p>

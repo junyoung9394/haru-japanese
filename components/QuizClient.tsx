@@ -3,12 +3,19 @@
 import { useState, useCallback } from "react";
 import AdBanner from "@/components/AdBanner";
 import { AD_SLOTS } from "@/lib/adSlots";
+import { n4Words } from "@/data/jlpt";
 
-type Category = "hiragana" | "katakana" | "jlpt";
+type Category = "hiragana" | "katakana" | "jlpt" | "n4";
 type Phase = "start" | "quiz" | "mid_ad" | "result" | "done_today";
 
 type QuizItem = { display: string; answer: string; reading?: string };
 type Question = { question: string; correct: string; choices: string[]; reading?: string };
+
+const n4QuizItems: QuizItem[] = n4Words.map((w) => ({
+  display: w.meaning,
+  answer: w.word,
+  reading: w.reading,
+}));
 
 const quizData: Record<Category, QuizItem[]> = {
   hiragana: [
@@ -107,6 +114,7 @@ const quizData: Record<Category, QuizItem[]> = {
     { display: "ヲ", answer: "wo" },
     { display: "ン", answer: "n" },
   ],
+  n4: n4QuizItems,
   jlpt: [
     { display: "물", answer: "水", reading: "みず" },
     { display: "산", answer: "山", reading: "やま" },
@@ -135,6 +143,7 @@ const categoryLabels: Record<Category, string> = {
   hiragana: "히라가나",
   katakana: "가타카나",
   jlpt: "N5 단어",
+  n4: "N4 단어",
 };
 
 function shuffle<T>(arr: T[]): T[] {
@@ -245,8 +254,8 @@ export default function QuizClient() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-10">
       {/* Category tabs */}
-      <div className="flex gap-2 mb-8">
-        {(["hiragana", "katakana", "jlpt"] as Category[]).map((cat) => (
+      <div className="flex gap-2 mb-8 flex-wrap">
+        {(["hiragana", "katakana", "jlpt", "n4"] as Category[]).map((cat) => (
           <button
             key={cat}
             onClick={() => handleTabClick(cat)}
@@ -265,10 +274,10 @@ export default function QuizClient() {
       {phase === "start" && (
         <div className="text-center">
           <div className="bg-white border border-gray-200 rounded-2xl p-8 space-y-4">
-            <p className="text-4xl">🧩</p>
+            <p className="text-4xl" aria-hidden="true">🧩</p>
             <h2 className="text-xl font-bold text-gray-800">{categoryLabels[category]} 퀴즈</h2>
             <p className="text-gray-600 text-sm">
-              {category === "jlpt"
+              {category === "jlpt" || category === "n4"
                 ? "한국어 뜻을 보고 올바른 일본어 단어를 골라보세요."
                 : `${categoryLabels[category]} 문자를 보고 올바른 발음을 골라보세요.`}
               <br />랜덤 10문제 · 4지선다
@@ -415,6 +424,14 @@ export default function QuizClient() {
                   className="border border-rose-600 text-rose-600 px-8 py-3 rounded-full font-semibold hover:bg-rose-50 transition-colors"
                 >
                   N5 단어 도전하기
+                </button>
+              )}
+              {category === "jlpt" && (
+                <button
+                  onClick={() => handleTabClick("n4")}
+                  className="border border-rose-600 text-rose-600 px-8 py-3 rounded-full font-semibold hover:bg-rose-50 transition-colors"
+                >
+                  N4 단어 도전하기
                 </button>
               )}
             </div>
