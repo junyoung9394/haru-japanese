@@ -6,9 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: [
-      "https://japanese.luckygrampus.com/sitemap.xml",
-      "https://japanese.luckygrampus.com/rss.xml",
-    ],
+    sitemap: "https://japanese.luckygrampus.com/sitemap.xml",
   };
 }
