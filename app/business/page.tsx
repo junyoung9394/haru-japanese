@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import AppDownloadCta from "@/components/AppDownloadCta";
 import AdSlot from "@/components/AdSlot";
+import AdBanner from "@/components/AdBanner";
+import { AD_SLOTS } from "@/lib/adSlots";
 
 export const metadata: Metadata = {
   title: "비즈니스 일본어 | 하루일본어",
@@ -195,7 +197,9 @@ const keigo = [
 
 export default function BusinessPage() {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10 space-y-10">
+    <div className="max-w-5xl mx-auto px-4 py-10">
+      <div className="flex gap-8 items-start">
+      <div className="flex-1 min-w-0 space-y-10">
       {/* 페이지 헤더 */}
       <section>
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3">
@@ -342,6 +346,14 @@ export default function BusinessPage() {
       <AppDownloadCta />
 
       <AdSlot />
+      </div>
+
+      <aside className="hidden md:block w-64 flex-shrink-0">
+        <div className="sticky" style={{ top: "80px" }}>
+          <AdBanner slotId={AD_SLOTS.sidebar} variant="sidebar" />
+        </div>
+      </aside>
+      </div>
     </div>
   );
 }

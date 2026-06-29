@@ -93,7 +93,7 @@ export default function Home() {
         </div>
       </section>
 
-      <AdBanner slotId={AD_SLOTS.content_mid} variant="banner" />
+      <AdBanner slotId={AD_SLOTS.home_top} variant="banner" />
 
       {/* 학습 카테고리 */}
       <section>
@@ -113,7 +113,7 @@ export default function Home() {
         </div>
       </section>
 
-      <AdSlot type="horizontal" />
+      <AdBanner slotId={AD_SLOTS.content_mid} variant="banner" />
 
       {/* 히라가나 미리보기 */}
       <section>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import AdSlot from "@/components/AdSlot";
+import AdBanner from "@/components/AdBanner";
+import { AD_SLOTS } from "@/lib/adSlots";
 import KanjiTabs from "@/components/KanjiTabs";
 import KanjiBanner from "@/components/KanjiBanner";
 import AppInfoSection from "@/components/AppInfoSection";
@@ -15,7 +17,9 @@ const totalCount = kanjiByGrade.reduce((sum, g) => sum + g.list.length, 0);
 
 export default function KanjiPage() {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10 space-y-10">
+    <div className="max-w-5xl mx-auto px-4 py-10">
+      <div className="flex gap-8 items-start">
+      <div className="flex-1 min-w-0 space-y-10">
       {/* 앱 다운로드 배너 */}
       <KanjiBanner />
 
@@ -84,6 +88,14 @@ export default function KanjiPage() {
 
       {/* 앱 소개 섹션 */}
       <AppInfoSection />
+      </div>
+
+      <aside className="hidden md:block w-64 flex-shrink-0">
+        <div className="sticky" style={{ top: "80px" }}>
+          <AdBanner slotId={AD_SLOTS.sidebar} variant="sidebar" />
+        </div>
+      </aside>
+      </div>
     </div>
   );
 }

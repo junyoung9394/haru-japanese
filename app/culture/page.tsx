@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import AppDownloadCta from "@/components/AppDownloadCta";
 import AdBanner from "@/components/AdBanner";
+import AdSlot from "@/components/AdSlot";
 import { AD_SLOTS } from "@/lib/adSlots";
 import { cultureItems } from "@/data/culture";
 import CultureGrid from "@/components/CultureGrid";
@@ -13,7 +14,9 @@ export const metadata: Metadata = {
 
 export default function CulturePage() {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10 space-y-10">
+    <div className="max-w-5xl mx-auto px-4 py-10">
+      <div className="flex gap-8 items-start">
+      <div className="flex-1 min-w-0 space-y-10">
       <section>
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3">
           일본 문화 배우기
@@ -38,6 +41,15 @@ export default function CulturePage() {
       <AppDownloadCta />
 
       <AdBanner slotId={AD_SLOTS.content_bottom} variant="banner" />
+      <AdSlot type="relaxed" />
+      </div>
+
+      <aside className="hidden md:block w-64 flex-shrink-0">
+        <div className="sticky" style={{ top: "80px" }}>
+          <AdBanner slotId={AD_SLOTS.sidebar} variant="sidebar" />
+        </div>
+      </aside>
+      </div>
     </div>
   );
 }
