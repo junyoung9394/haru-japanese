@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca&utm_source=kanji_web&utm_medium=quiz_cta";
+  "https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca&referrer=utm_source%3Djp-site%26utm_medium%3Dweb%26utm_campaign%3Dkanji-banner";
 const SESSION_KEY = "kanji_banner_dismissed";
 
 export default function KanjiBanner() {

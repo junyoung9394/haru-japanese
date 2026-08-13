@@ -83,7 +83,7 @@ export default function Home() {
             히라가나부터 시작하기
           </Link>
           <a
-            href="https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca"
+            href="https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca&referrer=utm_source%3Djp-site%26utm_medium%3Dweb%26utm_campaign%3Dhero"
             target="_blank"
             rel="noopener noreferrer"
             className="border border-rose-600 text-rose-600 px-6 py-3 rounded-full font-semibold hover:bg-rose-50 transition-colors"
@@ -233,7 +233,7 @@ export default function Home() {
         </div>
         <div className="text-center">
           <a
-            href="https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca"
+            href="https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca&referrer=utm_source%3Djp-site%26utm_medium%3Dweb%26utm_campaign%3Dbottom-cta"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-rose-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-rose-700 transition-colors"
