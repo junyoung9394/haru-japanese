@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca";
+  "https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca&referrer=utm_source%3Djp-site%26utm_medium%3Dweb%26utm_campaign%3Ddownload-page";
 
 const appFeatures = [
   { icon: "📚", title: "JLPT N5~N1 단어 학습", desc: "레벨별로 정리된 단어를 체계적으로 학습합니다." },

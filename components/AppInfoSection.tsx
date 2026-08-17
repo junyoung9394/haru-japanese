@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca&utm_source=kanji_web&utm_medium=quiz_cta";
+  "https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca&referrer=utm_source%3Djp-site%26utm_medium%3Dweb%26utm_campaign%3Dapp-info";
 
 const FEATURES = [
   { icon: "📚", title: "JLPT N5~N1 단어장", desc: "레벨별 단어를 플래시카드로 암기" },

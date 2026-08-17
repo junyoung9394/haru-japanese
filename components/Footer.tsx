@@ -32,7 +32,7 @@ export default function Footer() {
             <ul className="flex flex-col gap-2 text-sm text-gray-600">
               <li>
                 <a
-                  href="https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca"
+                  href="https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca&referrer=utm_source%3Djp-site%26utm_medium%3Dweb%26utm_campaign%3Dfooter"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-rose-600 transition-colors"

@@ -1,5 +1,5 @@
 const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca";
+  "https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca&referrer=utm_source%3Djp-site%26utm_medium%3Dweb%26utm_campaign%3Dcta";
 
 export default function AppDownloadCta() {
   return (
