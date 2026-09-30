@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "개인정보처리방침 | 하루일본어",
+  alternates: { canonical: "/privacy" },
+  title: "개인정보처리방침",
   description:
     "하루일본어 웹사이트의 개인정보 처리와 광고, 쿠키 사용에 대한 안내입니다.",
 };

@@ -1,3 +1,4 @@
+import RelatedLearning from "@/components/RelatedLearning";
 import type { Metadata } from "next";
 import AppDownloadCta from "@/components/AppDownloadCta";
 import AdSlot from "@/components/AdSlot";
@@ -5,27 +6,19 @@ import AdBanner from "@/components/AdBanner";
 import { AD_SLOTS } from "@/lib/adSlots";
 
 export const metadata: Metadata = {
-  title: "JPT 시험 안내 | 하루일본어",
+  alternates: { canonical: "/jpt" },
+  title: "JPT 시험 구성·점수 체계·JLPT 차이",
   description:
-    "JPT(Japanese Proficiency Test) 시험 구성, 점수별 레벨, JLPT 비교까지 한눈에 확인하세요. 취업·이직에 활용되는 JPT 시험을 완벽하게 준비해보세요.",
+    "JPT의 청해·독해 구성과 10~990점 평가 방식, JLPT와의 차이 및 준비 방법을 정리했습니다.",
 };
 
-const scoreLevels = [
-  { score: "900점 이상", grade: "원어민 수준", desc: "일본어를 자유자재로 구사하며 고도의 표현도 완벽히 이해하는 수준." },
-  { score: "800~899점", grade: "고급 (통번역 가능)", desc: "복잡한 내용도 정확히 이해하고 통역·번역 업무에 활용 가능한 수준." },
-  { score: "700~799점", grade: "준고급 (업무 활용 가능)", desc: "비즈니스 현장에서 일본어로 원활하게 업무를 수행할 수 있는 수준." },
-  { score: "600~699점", grade: "중상급", desc: "일상적인 화제 외에 전문적인 내용도 어느 정도 이해할 수 있는 수준." },
-  { score: "500~599점", grade: "중급", desc: "일상적인 장면에서 일본어로 의사소통이 가능한 수준." },
-  { score: "400~499점", grade: "초중급", desc: "기본적인 어휘와 문법을 이해하고 간단한 대화가 가능한 수준." },
-  { score: "400점 미만", grade: "초급", desc: "일본어 학습을 시작하는 단계로, 기초 표현을 익히는 중인 수준." },
-];
 
 const comparisonRows = [
-  { category: "주관기관", jpt: "ETS (한국 연세대학교 위탁 운영)", jlpt: "일본국제교육지원협회 (JEES) / 국제교류기금" },
-  { category: "평가방식", jpt: "점수제 (0~990점)", jlpt: "합격·불합격제 (N1~N5)" },
+  { category: "주관기관", jpt: "YBM (한국 시행)", jlpt: "일본국제교육지원협회 (JEES) / 국제교류기금" },
+  { category: "평가방식", jpt: "점수제 (10~990점)", jlpt: "합격·불합격제 (N1~N5)" },
   { category: "시험구성", jpt: "청해 + 독해", jlpt: "언어지식 + 독해 + 청해" },
-  { category: "문항수", jpt: "총 120문항", jlpt: "레벨별 상이" },
-  { category: "응시료", jpt: "약 40,000원", jlpt: "약 35,000원" },
+  { category: "문항수", jpt: "총 200문항", jlpt: "레벨별 상이" },
+  { category: "응시료", jpt: "접수 시 공식 안내 확인", jlpt: "급수·지역·접수 기간별 공식 안내 확인" },
   { category: "활용처", jpt: "국내 취업·이직·승진 시험", jlpt: "취업·유학·자격증 등 국제 공인" },
 ];
 
@@ -39,8 +32,8 @@ const studyTips = [
     desc: "독해 영역에서 고득점을 위해서는 한자 어휘를 꾸준히 암기하는 것이 중요합니다. 어휘 문제가 전체의 상당 부분을 차지합니다.",
   },
   {
-    title: "TOEIC 학습법을 참고",
-    desc: "JPT는 ETS가 주관하며 TOEIC과 구조가 유사합니다. TOEIC 풀이 전략(파트별 시간 배분, 오답 소거법)을 JPT에 그대로 적용할 수 있습니다.",
+    title: "시험 시간에 맞춰 연습",
+    desc: "청해와 독해의 제한 시간을 기준으로 파트별 풀이 시간을 정하세요. 공식 샘플문제로 유형을 익히고 시간 내에 푸는 연습을 해보세요.",
   },
   {
     title: "기출문제 반복 풀이",
@@ -48,7 +41,7 @@ const studyTips = [
   },
   {
     title: "목표 점수를 먼저 설정",
-    desc: "취업 목적이라면 600~700점대를, 통번역 등 전문 직종을 목표로 한다면 800점 이상을 목표로 학습 계획을 세우는 것이 효율적입니다.",
+    desc: "지원하려는 회사·학교의 실제 요구 점수를 확인해 목표를 정하세요. 통번역 등 직무 수행 능력은 시험 점수와 별도로 준비해야 합니다.",
   },
 ];
 
@@ -63,9 +56,9 @@ export default function JptPage() {
           JPT 일본어 능력 시험
         </h1>
         <p className="text-gray-600 leading-relaxed max-w-2xl">
-          JPT(Japanese Proficiency Test)는 ETS가 주관하는 일본어 능력 시험으로,
+          JPT(Japanese Proficiency Test)는 국내에서 YBM이 시행하는 일본어 능력 시험으로,
           국내 취업·이직·승진에 폭넓게 활용됩니다. 이 페이지에서 시험 구성부터
-          점수별 레벨, JLPT 비교, 준비 팁까지 한눈에 확인하세요.
+          점수 체계, JLPT 비교, 준비 팁까지 한눈에 확인하세요.
         </p>
       </section>
 
@@ -74,10 +67,8 @@ export default function JptPage() {
         <h2 className="text-lg font-bold text-gray-800 mb-4">JPT란?</h2>
         <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-3 text-sm text-gray-700 leading-relaxed">
           <p>
-            <strong>JPT(Japanese Proficiency Test)</strong>는 ETS(Educational Testing
-            Service)가 개발하고 한국에서는 연세대학교가 위탁 운영하는 일본어 능력
-            평가 시험입니다. 청해(듣기)와 독해(읽기) 두 영역으로 구성되며,
-            0~990점의 점수로 능력을 측정합니다.
+            <strong>JPT(Japanese Proficiency Test)</strong>는 국내에서 YBM이 시행하는 일본어 능력 평가 시험입니다. 청해(듣기)와 독해(읽기) 두 영역으로 구성되며,
+            10~990점의 점수로 능력을 측정합니다.
           </p>
           <p>
             JLPT(일본어능력시험)가 N1~N5 등급의 <strong>합격·불합격</strong> 방식인
@@ -101,7 +92,7 @@ export default function JptPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="bg-white border border-gray-200 rounded-2xl p-6">
             <p className="text-base font-bold text-rose-600 mb-1">청해(聴解) · 듣기</p>
-            <p className="text-sm text-gray-600 mb-3">60문항 · 약 45분</p>
+            <p className="text-sm text-gray-600 mb-3">100문항 · 약 45분</p>
             <ul className="text-sm text-gray-700 space-y-1 leading-relaxed">
               <li>· 사진 묘사 문제</li>
               <li>· 질의응답 문제</li>
@@ -111,7 +102,7 @@ export default function JptPage() {
           </div>
           <div className="bg-white border border-gray-200 rounded-2xl p-6">
             <p className="text-base font-bold text-rose-600 mb-1">독해(読解) · 읽기</p>
-            <p className="text-sm text-gray-600 mb-3">60문항 · 약 50분</p>
+            <p className="text-sm text-gray-600 mb-3">100문항 · 약 50분</p>
             <ul className="text-sm text-gray-700 space-y-1 leading-relaxed">
               <li>· 어휘·한자 문제</li>
               <li>· 문법 문제</li>
@@ -121,30 +112,18 @@ export default function JptPage() {
           </div>
         </div>
         <div className="mt-4 bg-rose-50 border border-rose-200 rounded-2xl p-4 text-sm text-gray-700">
-          <strong>총 120문항 · 총점 0~990점</strong> · 청해·독해 각 0~495점 만점
+          <strong>총 200문항 · 총점 10~990점</strong> · 청해·독해 각 5~495점
         </div>
       </section>
 
       <AdSlot />
 
-      {/* Section 3: 점수별 레벨 안내 */}
-      <section>
-        <h2 className="text-lg font-bold text-gray-800 mb-4">점수별 레벨 안내</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {scoreLevels.map((level) => (
-            <div
-              key={level.score}
-              className="bg-white border border-gray-200 rounded-xl p-4"
-            >
-              <p className="text-lg font-bold text-rose-600 mb-1">{level.score}</p>
-              <p className="text-sm font-semibold text-gray-800 mb-1">{level.grade}</p>
-              <p className="text-xs text-gray-600">{level.desc}</p>
-            </div>
-          ))}
-        </div>
+      <section className="bg-rose-50 border border-rose-200 rounded-2xl p-6 space-y-3">
+        <h2 className="text-lg font-bold text-gray-800">점수 해석과 공식 안내</h2>
+        <p className="text-sm text-gray-700">JPT는 합격·불합격 없이 점수를 제공합니다. 기관별 요구 점수가 다르며, 높은 점수만으로 원어민 수준이나 통번역 업무 능력을 보장하지는 않습니다.</p>
+        <p className="text-sm text-gray-700">청해·독해를 평가하는 시험이므로 말하기·쓰기 능력은 별도로 확인해야 합니다.</p>
+        <a href="https://www.jpt.co.kr/common/template/viewContents.php?contentsCode=38" className="text-sm text-rose-700 underline">JPT 공식 시험 구성 확인</a>
       </section>
-
-      <AdSlot />
 
       {/* Section 4: JPT vs JLPT 비교 */}
       <section>
@@ -204,6 +183,7 @@ export default function JptPage() {
         </div>
       </section>
 
+      <RelatedLearning topic="jpt" />
       <AppDownloadCta />
 
       <AdSlot />

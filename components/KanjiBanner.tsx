@@ -1,26 +1,40 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca&referrer=utm_source%3Djp-site%26utm_medium%3Dweb%26utm_campaign%3Dkanji-banner";
 const SESSION_KEY = "kanji_banner_dismissed";
 
-export default function KanjiBanner() {
-  const [visible, setVisible] = useState(false);
+function subscribe(onChange: () => void) {
+  window.addEventListener("storage", onChange);
+  return () => window.removeEventListener("storage", onChange);
+}
 
-  useEffect(() => {
-    if (!sessionStorage.getItem(SESSION_KEY)) {
-      setVisible(true);
-    }
-  }, []);
+function getSnapshot() {
+  try {
+    return !sessionStorage.getItem(SESSION_KEY);
+  } catch {
+    return true;
+  }
+}
+
+const getServerSnapshot = () => false;
+
+export default function KanjiBanner() {
+  const [dismissed, setDismissed] = useState(false);
+  const visible = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   function dismiss() {
-    sessionStorage.setItem(SESSION_KEY, "1");
-    setVisible(false);
+    try {
+      sessionStorage.setItem(SESSION_KEY, "1");
+    } catch {
+      // The banner can still be dismissed when browser storage is unavailable.
+    }
+    setDismissed(true);
   }
 
-  if (!visible) return null;
+  if (!visible || dismissed) return null;
 
   return (
     <div

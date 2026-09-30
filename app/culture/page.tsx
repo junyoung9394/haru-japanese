@@ -7,7 +7,8 @@ import { cultureItems } from "@/data/culture";
 import CultureGrid from "@/components/CultureGrid";
 
 export const metadata: Metadata = {
-  title: "일본 문화 배우기 | 하루일본어",
+  alternates: { canonical: "/culture" },
+  title: "일본 문화 배우기",
   description:
     "일본 인사, 식당, 편의점, 온천, 지하철 매너 등 일본 문화를 일본어 표현과 함께 배워보세요.",
 };

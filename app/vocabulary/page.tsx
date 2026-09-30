@@ -1,3 +1,4 @@
+import RelatedLearning from "@/components/RelatedLearning";
 import type { Metadata } from "next";
 import AppDownloadCta from "@/components/AppDownloadCta";
 import AdSlot from "@/components/AdSlot";
@@ -5,9 +6,10 @@ import AdBanner from "@/components/AdBanner";
 import { AD_SLOTS } from "@/lib/adSlots";
 
 export const metadata: Metadata = {
-  title: "일본어 기초 단어 | 하루일본어",
+  alternates: { canonical: "/vocabulary" },
+  title: "일본어 기초 단어 — 숫자·요일·가족·동사",
   description:
-    "숫자, 요일, 색깔, 가족, 시간, 동사 등 일본어 기초 단어를 한눈에 확인하세요. 하루일본어 앱으로 반복 학습하면 더 빠르게 외울 수 있습니다.",
+    "일본어 숫자, 요일, 가족, 시간과 기본 동사를 읽는 법과 뜻으로 익히고 퀴즈로 복습하세요.",
 };
 
 const numbers = [
@@ -159,6 +161,7 @@ export default function VocabularyPage() {
         <WordGrid words={verbs} />
       </section>
 
+      <RelatedLearning topic="vocabulary" />
       <AppDownloadCta />
 
       <AdSlot />

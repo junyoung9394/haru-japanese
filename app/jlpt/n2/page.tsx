@@ -6,7 +6,8 @@ import { AD_SLOTS } from "@/lib/adSlots";
 import { n2Words, n2Grammar } from "@/data/jlpt";
 
 export const metadata: Metadata = {
-  title: "JLPT N2 단어·문법 | 하루일본어",
+  alternates: { canonical: "/jlpt/n2" },
+  title: "JLPT N2 단어·문법",
   description:
     "JLPT N2 필수 단어 50개와 핵심 문법 20가지를 학습하세요. 준고급 일본어 어휘와 문법을 정리했습니다.",
 };

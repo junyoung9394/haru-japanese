@@ -1,3 +1,4 @@
+import RelatedLearning from "@/components/RelatedLearning";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = cultureItems.find((c) => c.slug === slug);
   if (!item) return {};
   return {
-    title: `${item.title} | 일본 문화 | 하루일본어`,
+    title: item.slug === "japanese-regions" ? "일본 지역 이름 — 8개 지방과 주요 도시 정리" : item.slug === "japanese-restaurant" ? "식당 일본어 — 주문·계산 표현과 식사 예절" : `${item.title} | 일본 문화`,
     description: item.description,
     alternates: {
       canonical: `https://japanese.luckygrampus.com/culture/${item.slug}`,
@@ -110,6 +111,7 @@ export default async function CultureDetailPage({ params }: Props) {
         </section>
       )}
 
+      <RelatedLearning topic="culture" />
       <AppDownloadCta />
 
       {/* 이전/다음 문화 콘텐츠 */}

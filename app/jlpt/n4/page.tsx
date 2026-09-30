@@ -6,7 +6,8 @@ import { AD_SLOTS } from "@/lib/adSlots";
 import { n4Words, n4Grammar } from "@/data/jlpt";
 
 export const metadata: Metadata = {
-  title: "JLPT N4 단어·문법 | 하루일본어",
+  alternates: { canonical: "/jlpt/n4" },
+  title: "JLPT N4 단어·문법",
   description:
     "JLPT N4 필수 단어 35개와 핵심 문법 12가지를 학습하세요. 역, 공항, 병원 등 생활 밀착형 어휘와 て형 문법을 정리했습니다.",
 };

@@ -6,7 +6,8 @@ import { AD_SLOTS } from "@/lib/adSlots";
 import { katakana } from "@/data/kana";
 
 export const metadata: Metadata = {
-  title: "가타카나 학습 | 하루일본어",
+  alternates: { canonical: "/katakana" },
+  title: "가타카나 학습",
   description:
     "일본어 외래어 표기에 자주 쓰이는 가타카나를 카드와 예시 단어로 쉽게 배워보세요. 46자 전체를 로마자와 함께 확인할 수 있습니다.",
 };
