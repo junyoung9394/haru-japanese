@@ -5,7 +5,8 @@ import AdBanner from "@/components/AdBanner";
 import { AD_SLOTS } from "@/lib/adSlots";
 
 export const metadata: Metadata = {
-  title: "여행 일본어 회화 | 하루일본어",
+  alternates: { canonical: "/travel" },
+  title: "여행 일본어 회화",
   description:
     "일본 여행 필수 일본어 회화 모음. 공항, 숙소, 식당, 쇼핑, 긴급상황별 실전 회화 표현을 확인하고 앱에서 반복 학습해보세요.",
 };

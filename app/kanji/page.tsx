@@ -8,7 +8,8 @@ import AppInfoSection from "@/components/AppInfoSection";
 import { kanjiByGrade } from "@/data/kanji";
 
 export const metadata: Metadata = {
-  title: "일본어 기초 한자 | 하루일본어",
+  alternates: { canonical: "/kanji" },
+  title: "일본어 기초 한자",
   description:
     "일본 초등학교 교육한자(教育漢字) 1~6학년 1024자를 학년별로 학습하세요. 각 한자의 음독·훈독과 한국어 뜻을 한눈에 확인할 수 있습니다.",
 };

@@ -1,3 +1,4 @@
+import Script from "next/script";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
@@ -81,14 +82,6 @@ const jsonLd = {
   description:
     "히라가나, 가타카나, JLPT 단어와 문법, 일본 문화를 초보자도 쉽게 배울 수 있는 일본어 학습 사이트입니다.",
   inLanguage: "ko",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${BASE_URL}/quiz?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 export default function RootLayout({
@@ -114,6 +107,8 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+      <Script src="/site-analytics.js" strategy="afterInteractive" />
+        <div className="text-center text-xs py-3"><a href="/analytics-info.html">방문 통계 안내·설정</a></div>
       </body>
     </html>
   );

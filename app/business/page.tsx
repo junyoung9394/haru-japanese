@@ -1,3 +1,4 @@
+import RelatedLearning from "@/components/RelatedLearning";
 import type { Metadata } from "next";
 import AppDownloadCta from "@/components/AppDownloadCta";
 import AdSlot from "@/components/AdSlot";
@@ -5,9 +6,10 @@ import AdBanner from "@/components/AdBanner";
 import { AD_SLOTS } from "@/lib/adSlots";
 
 export const metadata: Metadata = {
-  title: "비즈니스 일본어 | 하루일본어",
+  alternates: { canonical: "/business" },
+  title: "비즈니스 일본어 표현 — 전화·이메일·회의·경어",
   description:
-    "직장에서 바로 쓰는 비즈니스 일본어 표현을 배워보세요. 출퇴근 인사, 전화 응대, 이메일 문구, 회의 표현, 경어 패턴까지 한번에 확인할 수 있습니다.",
+    "출퇴근 인사부터 전화 응대, 이메일과 회의까지 상황별 비즈니스 일본어 표현을 일본어·발음·뜻으로 확인하세요.",
 };
 
 const greetingPhrases = [
@@ -343,6 +345,7 @@ export default function BusinessPage() {
         </div>
       </section>
 
+      <RelatedLearning topic="business" />
       <AppDownloadCta />
 
       <AdSlot />

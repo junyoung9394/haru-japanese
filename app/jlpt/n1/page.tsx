@@ -6,7 +6,8 @@ import { AD_SLOTS } from "@/lib/adSlots";
 import { n1Words, n1Grammar } from "@/data/jlpt";
 
 export const metadata: Metadata = {
-  title: "JLPT N1 단어·문법 | 하루일본어",
+  alternates: { canonical: "/jlpt/n1" },
+  title: "JLPT N1 단어·문법",
   description:
     "JLPT N1 필수 단어 50개와 핵심 문법 20가지를 학습하세요. 고급 일본어 어휘와 문법을 카테고리별로 정리했습니다.",
 };

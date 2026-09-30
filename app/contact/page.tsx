@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "문의하기 | 하루일본어",
+  alternates: { canonical: "/contact" },
+  title: "문의하기",
   description: "하루일본어 사이트와 앱 관련 문의 안내 페이지입니다.",
 };
 

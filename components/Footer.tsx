@@ -42,6 +42,14 @@ export default function Footer() {
               </li>
               <li><Link href="/privacy" className="hover:text-rose-600 transition-colors">개인정보처리방침</Link></li>
               <li><Link href="/contact" className="hover:text-rose-600 transition-colors">문의하기</Link></li>
+              <li>
+                <a
+                  href="https://chinese.luckygrampus.com"
+                  className="hover:text-rose-600 transition-colors"
+                >
+                  <span aria-hidden="true">🏮</span> 하루중국어
+                </a>
+              </li>
             </ul>
           </div>
         </div>

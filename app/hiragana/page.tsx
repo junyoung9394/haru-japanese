@@ -6,7 +6,8 @@ import { AD_SLOTS } from "@/lib/adSlots";
 import { hiragana } from "@/data/kana";
 
 export const metadata: Metadata = {
-  title: "히라가나 학습 | 하루일본어",
+  alternates: { canonical: "/hiragana" },
+  title: "히라가나 학습",
   description:
     "일본어의 기본 문자인 히라가나를 카드와 예시 단어로 쉽게 배워보세요. 46자 전체를 로마자와 함께 확인할 수 있습니다.",
 };

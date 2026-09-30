@@ -5,7 +5,8 @@ import AdBanner from "@/components/AdBanner";
 import { AD_SLOTS } from "@/lib/adSlots";
 
 export const metadata: Metadata = {
-  title: "기본 소통 일본어 | 하루일본어",
+  alternates: { canonical: "/basic" },
+  title: "기본 소통 일본어",
   description:
     "일상에서 바로 쓰는 기본 일본어 회화 표현 모음. 인사, 감사, 사과, 부탁, 감정 표현, 일상 대화까지 기초 소통 문장을 확인하고 앱에서 반복 학습해보세요.",
 };

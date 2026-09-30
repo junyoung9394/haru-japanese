@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "JLPT 일본어 단어 문법 공부 앱 다운로드 | 하루일본어",
+  alternates: { canonical: "/app-download" },
+  title: "JLPT 일본어 단어 문법 공부 앱 다운로드",
   description:
     "N5부터 N1까지 일본어 단어, 문법, 퀴즈, 오답노트, TTS 발음으로 반복 학습할 수 있는 앱을 설치해보세요.",
 };

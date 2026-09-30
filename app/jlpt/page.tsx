@@ -1,3 +1,4 @@
+import RelatedLearning from "@/components/RelatedLearning";
 import type { Metadata } from "next";
 import Link from "next/link";
 import AppDownloadCta from "@/components/AppDownloadCta";
@@ -6,14 +7,15 @@ import { AD_SLOTS } from "@/lib/adSlots";
 import { n5Words, n5Grammar } from "@/data/jlpt";
 
 export const metadata: Metadata = {
-  title: "JLPT N5 기초 | 하루일본어",
+  alternates: { canonical: "/jlpt" },
+  title: "JLPT N5 수준·단어·문법 — 입문자 공부 가이드",
   description:
-    "JLPT N5 단어와 문법을 초보자도 쉽게 확인하고 앱에서 반복 학습해보세요. N5부터 N1까지 일본어 능력 시험을 준비할 수 있습니다.",
+    "JLPT N5는 어느 정도 수준일까요? N5 기초 단어와 문법 예문을 살펴보고 N4~N1 급수별 안내와 비교하세요.",
 };
 
 const levels = [
   { level: "N5", desc: "기초 일본어. 일상적인 표현과 기본 단어를 이해할 수 있는 수준.", href: "/jlpt" },
-  { level: "N4", desc: "기본적인 일본어. 일상적인 장면에서 대화할 수 있는 수준.", href: "/jlpt/n4" },
+  { level: "N4", desc: "기본적인 일본어. 기본적인 일본어로 쓰인 글과 느린 일상 대화를 이해하는 수준.", href: "/jlpt/n4" },
   { level: "N3", desc: "중급 일본어. 일상적인 내용을 어느 정도 이해할 수 있는 수준.", href: "/jlpt/n3" },
   { level: "N2", desc: "준고급 일본어. 자연스러운 일본어를 폭넓게 이해할 수 있는 수준.", href: "/jlpt/n2" },
   { level: "N1", desc: "고급 일본어. 고도의 일본어를 폭넓게 이해할 수 있는 수준.", href: "/jlpt/n1" },
@@ -124,7 +126,8 @@ export default function JlptPage() {
             </div>
           </section>
 
-          <AppDownloadCta />
+          <RelatedLearning topic="jlpt" />
+      <AppDownloadCta />
         </div>
 
         <aside className="hidden md:block w-64 flex-shrink-0">

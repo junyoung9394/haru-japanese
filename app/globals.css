@@ -31,6 +31,13 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  /*
+   * 한국어는 기본값에서 글자 단위로 줄바꿈돼 "반복"이 "반 / 복"으로 쪼개집니다.
+   * keep-all 로 어절(띄어쓰기) 단위에서만 끊기게 합니다.
+   * break-word 는 한 줄에 절대 안 들어가는 긴 URL 같은 경우의 안전장치입니다.
+   */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* 다크모드 주요 구조 요소 */
