@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import StoreButton from "@/components/StoreButton";
 
 export const metadata: Metadata = {
   title: "JLPT 일본어 단어 문법 공부 앱 다운로드 | 하루일본어",
@@ -30,7 +31,7 @@ const roles = [
       "일본 문화 콘텐츠 읽기",
       "학습 흐름 파악 및 시작",
     ],
-    color: "bg-rose-50 border-rose-200",
+    color: "bg-rose-50 border-rose-100",
   },
   {
     label: "앱 (JLPT 일본어 단어 문법 공부)",
@@ -40,53 +41,52 @@ const roles = [
       "TTS 발음 교정",
       "XP & 스트릭으로 학습 습관 형성",
     ],
-    color: "bg-blue-50 border-blue-200",
+    color: "bg-white border-gray-200",
   },
 ];
 
 export default function AppDownloadPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10 space-y-10">
-      <section className="text-center space-y-4">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
+    <div className="max-w-4xl mx-auto px-4 sm:px-5 py-10 sm:py-14 space-y-14">
+      <section className="hero-glow text-center pt-4">
+        <div className="app-icon mx-auto mb-6" aria-hidden="true" lang="ja">日</div>
+        <span className="eyebrow mb-4">Android 앱 · 무료</span>
+        <h1 className="text-[28px] sm:text-4xl font-extrabold text-gray-900 mb-4">
           JLPT 일본어 단어 문법 공부
         </h1>
-        <p className="text-gray-600 max-w-xl mx-auto leading-relaxed">
+        <p className="text-gray-600 sm:text-lg max-w-xl mx-auto leading-relaxed mb-8">
           N5부터 N1까지 일본어 단어, 문법, 한자, 히라가나, 가타카나를 퀴즈와 TTS 발음으로 반복 학습할 수 있는 앱입니다.
         </p>
-        <a
-          href={PLAY_STORE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-rose-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-rose-700 transition-colors text-lg"
-        >
-          Google Play에서 앱 설치하기
-        </a>
+        <StoreButton href={PLAY_STORE_URL} />
       </section>
 
       <section>
-        <h2 className="text-lg font-bold text-gray-800 mb-5">앱 주요 기능</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <h2 className="text-xl sm:text-[22px] font-extrabold text-gray-900 mb-5">앱 주요 기능</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {appFeatures.map((feature) => (
-            <div key={feature.title} className="bg-white border border-gray-200 rounded-2xl p-5">
-              <p className="text-2xl mb-2">{feature.icon}</p>
-              <p className="font-semibold text-gray-800 mb-1">{feature.title}</p>
-              <p className="text-sm text-gray-600">{feature.desc}</p>
+            <div key={feature.title} className="card p-5 flex items-start gap-4">
+              <span className="grid place-items-center shrink-0 w-11 h-11 rounded-[13px] bg-gray-100 text-xl font-bold text-gray-800" aria-hidden="true" lang="ja">
+                {feature.icon}
+              </span>
+              <span>
+                <span className="block font-bold text-gray-900 mb-1">{feature.title}</span>
+                <span className="block text-sm text-gray-500 leading-relaxed">{feature.desc}</span>
+              </span>
             </div>
           ))}
         </div>
       </section>
 
       <section>
-        <h2 className="text-lg font-bold text-gray-800 mb-5">웹사이트와 앱의 역할</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <h2 className="text-xl sm:text-[22px] font-extrabold text-gray-900 mb-5">웹사이트와 앱의 역할</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {roles.map((role) => (
             <div key={role.label} className={`border rounded-2xl p-6 ${role.color}`}>
-              <p className="font-bold text-gray-800 mb-4">{role.label}</p>
-              <ul className="space-y-2">
+              <p className="font-bold text-gray-900 mb-4">{role.label}</p>
+              <ul className="space-y-2.5">
                 {role.items.map((item) => (
-                  <li key={item} className="text-sm text-gray-700 flex items-start gap-2">
-                    <span className="text-rose-500 mt-0.5">✓</span>
+                  <li key={item} className="text-sm text-gray-700 flex items-start gap-2.5">
+                    <svg aria-hidden="true" className="w-4 h-4 mt-0.5 shrink-0 text-rose-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.6} strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
                     {item}
                   </li>
                 ))}
@@ -96,19 +96,12 @@ export default function AppDownloadPage() {
         </div>
       </section>
 
-      <section className="text-center bg-rose-50 border border-rose-200 rounded-2xl p-8 space-y-4">
-        <p className="text-xl font-bold text-gray-800">지금 바로 시작해보세요</p>
-        <p className="text-gray-600 text-sm">
+      <section className="promo p-8 sm:p-10 text-center" data-glyph="あ">
+        <p className="text-2xl font-extrabold text-white mb-2">지금 바로 시작해보세요</p>
+        <p className="text-white/85 text-[15px] mb-7">
           TTS 발음, 오답노트, 즐겨찾기로 매일 일본어 습관을 만들어보세요.
         </p>
-        <a
-          href={PLAY_STORE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-rose-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-rose-700 transition-colors"
-        >
-          Google Play에서 앱 설치하기
-        </a>
+        <StoreButton href={PLAY_STORE_URL} variant="light" />
       </section>
     </div>
   );

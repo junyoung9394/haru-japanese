@@ -1,34 +1,57 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 
 const PLAY_STORE_URL =
   "https://play.google.com/store/apps/details?id=com.junyoung.jlptvoca&referrer=utm_source%3Djp-site%26utm_medium%3Dweb%26utm_campaign%3Dkanji-banner";
 const SESSION_KEY = "kanji_banner_dismissed";
 
-export default function KanjiBanner() {
-  const [visible, setVisible] = useState(false);
+/**
+ * 세션 스토리지를 외부 스토어로 다룹니다.
+ * 서버 스냅샷은 항상 "닫힘"이라 SSR HTML에는 배너가 없고, 하이드레이션 후에만 나타납니다.
+ */
+let dismissedInMemory = false;
+const listeners = new Set<() => void>();
 
-  useEffect(() => {
-    if (!sessionStorage.getItem(SESSION_KEY)) {
-      setVisible(true);
-    }
-  }, []);
+function subscribe(onChange: () => void) {
+  listeners.add(onChange);
+  return () => {
+    listeners.delete(onChange);
+  };
+}
 
-  function dismiss() {
-    sessionStorage.setItem(SESSION_KEY, "1");
-    setVisible(false);
+function getSnapshot(): boolean {
+  if (dismissedInMemory) return true;
+  try {
+    return sessionStorage.getItem(SESSION_KEY) === "1";
+  } catch {
+    return false;
   }
+}
 
-  if (!visible) return null;
+function getServerSnapshot(): boolean {
+  return true;
+}
+
+function dismiss() {
+  dismissedInMemory = true;
+  try {
+    sessionStorage.setItem(SESSION_KEY, "1");
+  } catch {}
+  listeners.forEach((listener) => listener());
+}
+
+export default function KanjiBanner() {
+  const isDismissed = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+  if (isDismissed) return null;
 
   return (
     <div
-      className="flex items-center justify-between gap-3 rounded-2xl border border-rose-200 px-4 py-3 sm:px-6 sm:py-4"
-      style={{ backgroundColor: "#FFF0F5" }}
+      className="flex items-center justify-between gap-3 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 sm:px-6 sm:py-4"
     >
       <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 min-w-0">
-        <p className="font-bold text-gray-800 text-sm sm:text-base whitespace-nowrap">
+        <p className="font-bold text-gray-800 text-sm sm:text-base truncate">
           📱 한자 퀴즈는 앱에서 무제한으로!
         </p>
         <p className="text-gray-500 text-xs sm:text-sm truncate">
