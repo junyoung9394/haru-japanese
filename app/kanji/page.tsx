@@ -84,8 +84,6 @@ export default function KanjiPage() {
         </ul>
       </section>
 
-      <AdSlot />
-
       {/* 앱 소개 섹션 */}
       <AppInfoSection />
       </div>

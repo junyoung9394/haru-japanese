@@ -259,8 +259,6 @@ export default function BusinessPage() {
         </div>
       </section>
 
-      <AdSlot />
-
       {/* 3. 이메일/문서 */}
       <section>
         <h2 className="text-lg font-bold text-gray-800 mb-4">3. 이메일 / 문서 표현</h2>
@@ -296,8 +294,6 @@ export default function BusinessPage() {
           ))}
         </div>
       </section>
-
-      <AdSlot />
 
       {/* 5. 기본 경어 패턴 */}
       <section>
@@ -345,7 +341,6 @@ export default function BusinessPage() {
 
       <AppDownloadCta />
 
-      <AdSlot />
       </div>
 
       <aside className="hidden md:block w-64 flex-shrink-0">

@@ -436,7 +436,6 @@ export default function QuizClient() {
               )}
             </div>
           </div>
-          <AdBanner slotId={AD_SLOTS.content_bottom} variant="banner" />
         </div>
       )}
 

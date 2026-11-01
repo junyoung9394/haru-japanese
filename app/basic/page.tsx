@@ -109,8 +109,6 @@ export default function BasicPage() {
         </div>
       </section>
 
-      <AdSlot />
-
       {/* 부탁 & 질문 */}
       <section>
         <h2 className="text-lg font-bold text-gray-800 mb-4">부탁 &amp; 질문</h2>
@@ -141,8 +139,6 @@ export default function BasicPage() {
         </div>
       </section>
 
-      <AdSlot />
-
       {/* 일상 대화 */}
       <section>
         <h2 className="text-lg font-bold text-gray-800 mb-4">일상 대화</h2>
@@ -159,7 +155,6 @@ export default function BasicPage() {
 
       <AppDownloadCta />
 
-      <AdSlot />
       </div>
 
       <aside className="hidden md:block w-64 flex-shrink-0">

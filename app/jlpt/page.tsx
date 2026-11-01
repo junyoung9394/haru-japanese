@@ -98,8 +98,6 @@ export default function JlptPage() {
             </div>
           </section>
 
-          <AdBanner slotId={AD_SLOTS.content_bottom} variant="banner" />
-
           {/* N4~N1 링크 */}
           <section className="bg-yellow-50 border border-yellow-200 rounded-2xl p-6">
             <h2 className="text-lg font-bold text-gray-800 mb-3">N4~N1 단어·문법 학습</h2>

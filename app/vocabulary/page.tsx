@@ -137,8 +137,6 @@ export default function VocabularyPage() {
         <WordGrid words={colors} />
       </section>
 
-      <AdSlot />
-
       {/* 가족 */}
       <section>
         <h2 className="text-lg font-bold text-gray-800 mb-4">가족</h2>
@@ -161,7 +159,6 @@ export default function VocabularyPage() {
 
       <AppDownloadCta />
 
-      <AdSlot />
       </div>
 
       <aside className="hidden md:block w-64 flex-shrink-0">

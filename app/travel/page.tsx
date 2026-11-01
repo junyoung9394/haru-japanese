@@ -109,8 +109,6 @@ export default function TravelPage() {
         </div>
       </section>
 
-      <AdSlot />
-
       {/* 식당 주문 */}
       <section>
         <h2 className="text-lg font-bold text-gray-800 mb-4">🍜 식당 주문</h2>
@@ -141,8 +139,6 @@ export default function TravelPage() {
         </div>
       </section>
 
-      <AdSlot />
-
       {/* 긴급상황 */}
       <section>
         <h2 className="text-lg font-bold text-gray-800 mb-4">🚨 긴급상황</h2>
@@ -159,7 +155,6 @@ export default function TravelPage() {
 
       <AppDownloadCta />
 
-      <AdSlot />
       </div>
 
       <aside className="hidden md:block w-64 flex-shrink-0">

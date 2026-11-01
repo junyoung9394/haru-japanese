@@ -1,6 +1,5 @@
 import Link from "next/link";
 import AppDownloadCta from "@/components/AppDownloadCta";
-import AdSlot from "@/components/AdSlot";
 import AdBanner from "@/components/AdBanner";
 import { AD_SLOTS } from "@/lib/adSlots";
 import { cultureItems } from "@/data/culture";
@@ -141,8 +140,6 @@ export default function Home() {
         </div>
       </section>
 
-      <AdBanner slotId={AD_SLOTS.content_bottom} variant="banner" />
-
       {/* N5 단어 미리보기 */}
       <section>
         <div className="flex items-center justify-between mb-5">
@@ -167,8 +164,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      <AdSlot type="inArticle" />
 
       {/* N5 문법 포인트 */}
       <section>
@@ -272,7 +267,6 @@ export default function Home() {
       {/* 앱 다운로드 CTA */}
       <AppDownloadCta />
 
-      <AdSlot type="relaxed" />
     </div>
   );
 }
