@@ -93,8 +93,6 @@ export default function JlptN2Page() {
             </div>
           </section>
 
-          <AdBanner slotId={AD_SLOTS.content_bottom} variant="banner" />
-
           <section className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
             <h2 className="text-base font-bold text-gray-800 mb-4">다른 레벨 학습하기</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">

@@ -54,7 +54,6 @@ export default function KatakanaPage() {
 
           <AppDownloadCta />
 
-          <AdBanner slotId={AD_SLOTS.content_bottom} variant="banner" />
         </div>
 
         <aside className="hidden md:block w-64 flex-shrink-0">

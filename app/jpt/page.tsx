@@ -125,8 +125,6 @@ export default function JptPage() {
         </div>
       </section>
 
-      <AdSlot />
-
       {/* Section 3: 점수별 레벨 안내 */}
       <section>
         <h2 className="text-lg font-bold text-gray-800 mb-4">점수별 레벨 안내</h2>
@@ -186,8 +184,6 @@ export default function JptPage() {
         </div>
       </section>
 
-      <AdSlot />
-
       {/* Section 5: 시험 준비 팁 */}
       <section>
         <h2 className="text-lg font-bold text-gray-800 mb-4">시험 준비 팁</h2>
@@ -206,7 +202,6 @@ export default function JptPage() {
 
       <AppDownloadCta />
 
-      <AdSlot />
       </div>
 
       <aside className="hidden md:block w-64 flex-shrink-0">

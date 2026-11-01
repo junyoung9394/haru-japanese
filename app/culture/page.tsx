@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import AppDownloadCta from "@/components/AppDownloadCta";
 import AdBanner from "@/components/AdBanner";
-import AdSlot from "@/components/AdSlot";
 import { AD_SLOTS } from "@/lib/adSlots";
 import { cultureItems } from "@/data/culture";
 import CultureGrid from "@/components/CultureGrid";
@@ -40,8 +39,6 @@ export default function CulturePage() {
 
       <AppDownloadCta />
 
-      <AdBanner slotId={AD_SLOTS.content_bottom} variant="banner" />
-      <AdSlot type="relaxed" />
       </div>
 
       <aside className="hidden md:block w-64 flex-shrink-0">

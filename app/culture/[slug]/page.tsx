@@ -132,7 +132,6 @@ export default async function CultureDetailPage({ params }: Props) {
         ) : <div />}
       </nav>
 
-      <AdSlot type="relaxed" />
     </div>
   );
 }
