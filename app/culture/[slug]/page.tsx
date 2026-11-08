@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import AppDownloadCta from "@/components/AppDownloadCta";
-import { cultureItems } from "@/data/culture";
+import { cultureItems, CULTURE_BASE_DATE } from "@/data/culture";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const item = cultureItems.find((c) => c.slug === slug);
   if (!item) return {};
   return {
-    title: `${item.title} | 일본 문화 | 하루일본어`,
+    title: `${item.title} | 일본 문화`,
     description: item.description,
     alternates: {
       canonical: `https://japanese.luckygrampus.com/culture/${item.slug}`,
@@ -62,6 +62,9 @@ export default async function CultureDetailPage({ params }: Props) {
           {item.title}
         </h1>
         <p className="text-gray-600 leading-relaxed">{item.description}</p>
+        <p className="text-xs text-gray-400">
+          최종 확인: {(item.updatedAt ?? CULTURE_BASE_DATE).replace(/^(\d{4})-(\d{2})-(\d{2})$/, (_, y, m, d) => `${y}년 ${Number(m)}월 ${Number(d)}일`)}
+        </p>
       </section>
 
       <AdSlot type="horizontal" />
