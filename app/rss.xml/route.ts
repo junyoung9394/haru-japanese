@@ -1,4 +1,4 @@
-import { cultureItems } from "@/data/culture";
+import { cultureItems, CULTURE_BASE_DATE } from "@/data/culture";
 
 const BASE_URL = "https://japanese.luckygrampus.com";
 
@@ -14,7 +14,8 @@ function escapeXml(str: string): string {
 export async function GET() {
   const buildDate = new Date().toUTCString();
 
-  const items = cultureItems
+  const items = [...cultureItems]
+    .sort((a, b) => (b.updatedAt ?? CULTURE_BASE_DATE).localeCompare(a.updatedAt ?? CULTURE_BASE_DATE))
     .map(
       (item) => `
     <item>
@@ -22,7 +23,7 @@ export async function GET() {
       <link>${BASE_URL}/culture/${item.slug}</link>
       <description>${escapeXml(item.description)}</description>
       <guid isPermaLink="true">${BASE_URL}/culture/${item.slug}</guid>
-      <pubDate>${buildDate}</pubDate>
+      <pubDate>${new Date(item.updatedAt ?? CULTURE_BASE_DATE).toUTCString()}</pubDate>
       <category>${escapeXml(item.category)}</category>
     </item>`
     )

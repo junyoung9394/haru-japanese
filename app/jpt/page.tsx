@@ -5,7 +5,7 @@ import AdBanner from "@/components/AdBanner";
 import { AD_SLOTS } from "@/lib/adSlots";
 
 export const metadata: Metadata = {
-  title: "JPT 시험 안내 | 하루일본어",
+  title: "JPT 시험 안내",
   description:
     "JPT(Japanese Proficiency Test) 시험 구성, 점수별 레벨, JLPT 비교까지 한눈에 확인하세요. 취업·이직에 활용되는 JPT 시험을 완벽하게 준비해보세요.",
 };

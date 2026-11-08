@@ -6,7 +6,7 @@ import { AD_SLOTS } from "@/lib/adSlots";
 import { n5Words, n5Grammar } from "@/data/jlpt";
 
 export const metadata: Metadata = {
-  title: "JLPT N5 기초 | 하루일본어",
+  title: "JLPT N5 기초",
   description:
     "JLPT N5 단어와 문법을 초보자도 쉽게 확인하고 앱에서 반복 학습해보세요. N5부터 N1까지 일본어 능력 시험을 준비할 수 있습니다.",
 };
@@ -32,6 +32,33 @@ export default function JlptPage() {
               JLPT(日本語能力試験)는 N5부터 N1까지 5단계로 구성된 일본어 능력 시험입니다.
               이 페이지에서는 입문 단계인 N5 단어와 문법을 확인할 수 있습니다.
             </p>
+          </section>
+
+          {/* 시험 일정 (2026-11-08 확인) */}
+          <section className="bg-rose-50 border border-rose-100 rounded-2xl p-5 space-y-2">
+            <h2 className="text-lg font-bold text-gray-800">JLPT 시험 일정</h2>
+            <ul className="text-sm text-gray-700 leading-relaxed list-disc pl-5 space-y-1">
+              <li>
+                <strong>2026년 2회차 시험: 12월 6일(일)</strong>. 한국 접수는 이미 끝났습니다.
+                시험 직전에는 새 문제보다 지금까지 외운 단어와 문법을 다시 보는 것이 좋습니다.
+              </li>
+              <li>
+                JLPT는 보통 1년에 두 번, 7월과 12월 첫째 일요일에 열립니다. 다음 7월 시험 접수는
+                예년 기준 봄에 시작합니다.
+              </li>
+              <li>
+                일본 정부가 2027년부터 시험 횟수를 늘리거나 온라인 시험을 도입하는 방안을 검토 중이라,
+                일정이 달라질 수 있습니다. 접수 전에 공식 사이트를 꼭 확인하세요.
+              </li>
+            </ul>
+            <a
+              href="https://www.jlpt.or.kr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-sm text-rose-600 font-medium hover:underline"
+            >
+              JLPT 한국 공식 사이트 →
+            </a>
           </section>
 
           {/* JLPT 레벨 소개 */}

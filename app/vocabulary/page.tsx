@@ -5,7 +5,7 @@ import AdBanner from "@/components/AdBanner";
 import { AD_SLOTS } from "@/lib/adSlots";
 
 export const metadata: Metadata = {
-  title: "일본어 기초 단어 | 하루일본어",
+  title: "일본어 기초 단어",
   description:
     "숫자, 요일, 색깔, 가족, 시간, 동사 등 일본어 기초 단어를 한눈에 확인하세요. 하루일본어 앱으로 반복 학습하면 더 빠르게 외울 수 있습니다.",
 };

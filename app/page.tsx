@@ -248,7 +248,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {cultureItems.slice(0, 3).map((item) => (
-            <div key={item.slug} className="bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-sm transition-shadow">
+            <Link key={item.slug} href={`/culture/${item.slug}`} className="block bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-sm transition-shadow">
               <span className="text-xs bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full font-medium">
                 {item.category}
               </span>
@@ -259,7 +259,7 @@ export default function Home() {
                   {item.expression} — {item.expressionMeaning}
                 </p>
               )}
-            </div>
+            </Link>
           ))}
         </div>
       </section>

@@ -5,7 +5,7 @@ import AdBanner from "@/components/AdBanner";
 import { AD_SLOTS } from "@/lib/adSlots";
 
 export const metadata: Metadata = {
-  title: "비즈니스 일본어 | 하루일본어",
+  title: "비즈니스 일본어",
   description:
     "직장에서 바로 쓰는 비즈니스 일본어 표현을 배워보세요. 출퇴근 인사, 전화 응대, 이메일 문구, 회의 표현, 경어 패턴까지 한번에 확인할 수 있습니다.",
 };
