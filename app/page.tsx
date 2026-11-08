@@ -2,7 +2,7 @@ import Link from "next/link";
 import AppDownloadCta from "@/components/AppDownloadCta";
 import AdBanner from "@/components/AdBanner";
 import { AD_SLOTS } from "@/lib/adSlots";
-import { cultureItems } from "@/data/culture";
+import { getPublishedCultureItems } from "@/data/culture";
 import { hiragana } from "@/data/kana";
 import { n5Words, n5Grammar } from "@/data/jlpt";
 
@@ -61,6 +61,9 @@ const categories = [
 const hiraganaPreview = hiragana.slice(0, 10);
 const wordPreview = n5Words.slice(0, 8);
 const grammarPreview = n5Grammar.slice(0, 3);
+
+// 새 글이 발행되면 첫 화면 추천 글도 바뀌도록 1시간마다 다시 만든다.
+export const revalidate = 3600;
 
 export default function Home() {
   return (
@@ -247,7 +250,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {cultureItems.slice(0, 3).map((item) => (
+          {getPublishedCultureItems().slice(0, 3).map((item) => (
             <Link key={item.slug} href={`/culture/${item.slug}`} className="block bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-sm transition-shadow">
               <span className="text-xs bg-rose-100 text-rose-700 px-2 py-0.5 rounded-full font-medium">
                 {item.category}

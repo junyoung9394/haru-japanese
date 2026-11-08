@@ -3,17 +3,20 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdSlot from "@/components/AdSlot";
 import AppDownloadCta from "@/components/AppDownloadCta";
-import { cultureItems, CULTURE_BASE_DATE } from "@/data/culture";
+import { getPublishedCultureItems, cultureDate } from "@/data/culture";
+
+// 예약 글은 발행일 전엔 404, 발행일이 지나면 다음 요청 때 새로 만들어진다.
+export const revalidate = 3600;
 
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  return cultureItems.map((item) => ({ slug: item.slug }));
+  return getPublishedCultureItems().map((item) => ({ slug: item.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const item = cultureItems.find((c) => c.slug === slug);
+  const item = getPublishedCultureItems().find((c) => c.slug === slug);
   if (!item) return {};
   return {
     title: `${item.title} | 일본 문화`,
@@ -39,12 +42,13 @@ const categoryColor: Record<string, string> = {
 
 export default async function CultureDetailPage({ params }: Props) {
   const { slug } = await params;
-  const item = cultureItems.find((c) => c.slug === slug);
+  const item = getPublishedCultureItems().find((c) => c.slug === slug);
   if (!item) notFound();
 
-  const currentIndex = cultureItems.findIndex((c) => c.slug === slug);
-  const prev = cultureItems[currentIndex - 1];
-  const next = cultureItems[currentIndex + 1];
+  const published = getPublishedCultureItems();
+  const currentIndex = published.findIndex((c) => c.slug === slug);
+  const prev = published[currentIndex - 1];
+  const next = published[currentIndex + 1];
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10 space-y-10">
@@ -63,7 +67,7 @@ export default async function CultureDetailPage({ params }: Props) {
         </h1>
         <p className="text-gray-600 leading-relaxed">{item.description}</p>
         <p className="text-xs text-gray-400">
-          최종 확인: {(item.updatedAt ?? CULTURE_BASE_DATE).replace(/^(\d{4})-(\d{2})-(\d{2})$/, (_, y, m, d) => `${y}년 ${Number(m)}월 ${Number(d)}일`)}
+          최종 확인: {(item.updatedAt ?? cultureDate(item)).replace(/^(\d{4})-(\d{2})-(\d{2})$/, (_, y, m, d) => `${y}년 ${Number(m)}월 ${Number(d)}일`)}
         </p>
       </section>
 
