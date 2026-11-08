@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import AppDownloadCta from "@/components/AppDownloadCta";
 import AdBanner from "@/components/AdBanner";
 import { AD_SLOTS } from "@/lib/adSlots";
-import { cultureItems } from "@/data/culture";
+import { getPublishedCultureItems } from "@/data/culture";
 import CultureGrid from "@/components/CultureGrid";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "일본 문화 배우기",
@@ -25,7 +27,7 @@ export default function CulturePage() {
         </p>
       </section>
 
-      <CultureGrid items={cultureItems} />
+      <CultureGrid items={getPublishedCultureItems()} />
 
       <AdBanner slotId={AD_SLOTS.content_mid} variant="banner" />
 

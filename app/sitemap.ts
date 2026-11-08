@@ -1,12 +1,15 @@
 import { MetadataRoute } from "next";
-import { cultureItems, CULTURE_BASE_DATE } from "@/data/culture";
+import { getPublishedCultureItems, cultureDate } from "@/data/culture";
+
+// 예약 글이 발행일에 사이트맵에 들어가도록 1시간마다 다시 만든다.
+export const revalidate = 3600;
 
 const BASE_URL = "https://japanese.luckygrampus.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const culturePages = cultureItems.map((item) => ({
+  const culturePages = getPublishedCultureItems().map((item) => ({
     url: `${BASE_URL}/culture/${item.slug}`,
-    lastModified: new Date(item.updatedAt ?? CULTURE_BASE_DATE),
+    lastModified: new Date(item.updatedAt ?? cultureDate(item)),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
